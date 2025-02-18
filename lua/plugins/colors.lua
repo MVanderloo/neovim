@@ -52,14 +52,14 @@ return {
     'catppuccin/nvim',
     name = 'catppuccin',
     lazy = false,
-    config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
+    -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
   },
   { '0xstepit/flow.nvim', lazy = false },
   {
     'folke/tokyonight.nvim',
     lazy = false,
-    -- config = function() vim.cmd 'colorscheme tokyonight' end,
-    config = true,
+    config = function() vim.cmd 'colorscheme tokyonight' end,
+    -- config = true,
   },
   {
     'rebelot/kanagawa.nvim',
