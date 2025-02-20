@@ -25,9 +25,12 @@ require('lazy').setup {
   spec = {
     {
       'SunnyTamang/select-undo.nvim',
-      config = function()
-        require('select-undo').setup()
-      end,
+      opts = {
+        persistent_undo = true,
+        mapping = true,
+        line_mapping = 'gu',
+        partial_mapping = 'gU',
+      },
     },
     {
       'folke/snacks.nvim',
