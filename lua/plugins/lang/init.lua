@@ -15,6 +15,8 @@ return {
         gopls = {},
         zls = {},
         taplo = {},
+        dockerls = {},
+        docker_compose_language_service = {},
       },
     },
     config = function(_, opts)
