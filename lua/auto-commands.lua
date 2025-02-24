@@ -46,15 +46,16 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- create all intermediate directories along path when saving a file
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  callback = function(event)
-    if event.match:match '^%w%w+:[\\/][\\/]' then
-      return
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local file_path = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(file_path) == 0 then
+      vim.fn.mkdir(file_path, "p")
     end
-    local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
 
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
