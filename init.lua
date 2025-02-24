@@ -38,24 +38,10 @@ require('lazy').setup {
       lazy = false,
       opts = {
         bigfile = { enabled = true },
-        -- dashboard = { enabled = true },
         explorer = { enabled = true, replace_netrw = true },
-        -- mini.indent has text objects
-        indent = {
-          enabled = false,
-          animate = { enabled = false },
-        },
-        image = { enabled = true },
-        input = { enabled = true },
         picker = { enabled = true },
-        notifier = { enabled = true },
         quickfile = { enabled = true },
         -- scroll = { enabled = true },
-        statuscolumn = {
-          left = { 'mark', 'git', 'sign' },
-          right = { 'fold' },
-          folds = { open = true },
-        },
         -- mini cursorword a bit nicer defaults
         -- words = { enabled = true },
       },
