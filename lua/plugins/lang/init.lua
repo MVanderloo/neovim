@@ -43,7 +43,6 @@ return {
     ---@type conform.setupOpts
     opts = {
       formatters_by_ft = {
-        awk = { 'gawk' },
         lua = { 'stylua' },
         python = { 'ruff' },
 
@@ -95,8 +94,6 @@ return {
       local lint = require 'lint'
 
       lint.linters_by_ft = {
-        -- https://www.gnu.org/software/gawk/
-        awk = { 'gawk' },
         -- https://github.com/codespell-project/codespell
         -- https://golangci-lint.run/
         go = { 'codespell', 'golangcilint' },
@@ -179,7 +176,6 @@ return {
   },
 }
 
--- https://github.com/Integralist/nvim
 -- -- -- NOTE: Use the following to disable warnings/errors.
 -- --
 -- -- golangci-lint
@@ -208,9 +204,6 @@ return {
 -- 			local lint = require("lint")
 --
 -- 			lint.linters_by_ft = {
--- 				-- https://www.gnu.org/software/gawk/
--- 				awk = { "gawk" },
--- 				-- https://github.com/codespell-project/codespell
 -- 				-- https://golangci-lint.run/
 -- 				go = { "codespell", "golangcilint" },
 -- 				-- https://htmlhint.com/
@@ -293,8 +286,6 @@ return {
 -- 			conform.setup({
 -- 				log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
 -- 				formatters_by_ft = {
--- 					-- https://www.gnu.org/software/gawk/manual/gawk.html
--- 					awk = { "gawk" },
 -- 					-- https://github.com/mvdan/gofumpt
 -- 					-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
 -- 					-- https://github.com/incu6us/goimports-reviser
