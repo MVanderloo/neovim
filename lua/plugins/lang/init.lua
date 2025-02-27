@@ -17,6 +17,7 @@ return {
         taplo = {},
         dockerls = {},
         docker_compose_language_service = {},
+        yamlls = {},
       },
     },
     config = function(_, opts)
@@ -94,33 +95,16 @@ return {
       local lint = require 'lint'
 
       lint.linters_by_ft = {
-        -- https://github.com/codespell-project/codespell
-        -- https://golangci-lint.run/
         go = { 'codespell', 'golangcilint' },
-        -- https://htmlhint.com/
-        -- https://www.html-tidy.org/
         html = { 'tidy' },
-        -- https://github.com/mantoni/eslint_d.js
         javascript = { 'eslint_d' },
-        -- https://github.com/zaach/jsonlint
         json = { 'jsonlint' },
-        -- https://github.com/mrtazz/checkmake
         make = { 'checkmake' },
-        -- https://alexjs.com/
-        -- https://github.com/DavidAnson/markdownlint
-        -- https://docs.getwoke.tech/
         markdown = { 'alex', 'markdownlint', 'woke' },
-        -- https://github.com/rust-lang/rust-clippy
         rust = { 'clippy' },
-        -- https://www.gnu.org/software/bash/
-        -- https://www.shellcheck.net/
         sh = { 'bash', 'shellcheck' },
         bash = { 'bash', 'shellcheck' },
-        -- https://github.com/terraform-linters/tflint
-        -- https://github.com/aquasecurity/trivy (originally https://github.com/aquasecurity/tfsec)
         terraform = { 'tflint', 'trivy' },
-        -- https://www.shellcheck.net/
-        -- https://www.zsh.org/
         zsh = { 'shellcheck', 'zsh' },
 
         lua = { 'luacheck' },
@@ -146,9 +130,6 @@ return {
 
       -- NOTE: We need custom logic for handling YAML linting.
       --
-      -- https://github.com/rhysd/actionlint
-      -- https://github.com/adrienverge/yamllint (https://yamllint.readthedocs.io/en/stable/rules.html)
-      -- https://github.com/stoplightio/spectral (`npm install -g @stoplight/spectral-cli`)
       -- vim.api.nvim_create_autocmd({
       --   'BufReadPost',
       --   'BufWritePost',
@@ -204,36 +185,19 @@ return {
 -- 			local lint = require("lint")
 --
 -- 			lint.linters_by_ft = {
--- 				-- https://golangci-lint.run/
 -- 				go = { "codespell", "golangcilint" },
--- 				-- https://htmlhint.com/
--- 				-- https://www.html-tidy.org/
 -- 				html = { "tidy" },
--- 				-- https://github.com/mantoni/eslint_d.js
 -- 				javascript = { "eslint_d" },
--- 				-- https://github.com/zaach/jsonlint
 -- 				json = { "jsonlint" },
--- 				-- https://github.com/mrtazz/checkmake
 -- 				make = { "checkmake" },
--- 				-- https://alexjs.com/
--- 				-- https://github.com/DavidAnson/markdownlint
--- 				-- https://docs.getwoke.tech/
 -- 				markdown = { "alex", "markdownlint", "woke" },
--- 				-- https://github.com/rust-lang/rust-clippy
 -- 				rust = { "clippy" },
--- 				-- https://www.gnu.org/software/bash/
--- 				-- https://www.shellcheck.net/
 -- 				sh = { "bash", "shellcheck" },
--- 				-- https://github.com/terraform-linters/tflint
--- 				-- https://github.com/aquasecurity/trivy (originally https://github.com/aquasecurity/tfsec)
 -- 				terraform = { "tflint", "trivy" },
--- 				-- https://www.shellcheck.net/
--- 				-- https://www.zsh.org/
 -- 				zsh = { "shellcheck", "zsh" }
 -- 			}
 --
 -- 			-- WARNING: Removed luacheck linter due to problem with folke/neodev
--- 			-- https://github.com/mpeterv/luacheck
 -- 			-- lua = { "luacheck" },
 --
 -- 			-- Checkmake requires a ini file in the current directory
@@ -251,9 +215,6 @@ return {
 --
 -- 			-- NOTE: We need custom logic for handling YAML linting.
 -- 			--
--- 			-- https://github.com/rhysd/actionlint
--- 			-- https://github.com/adrienverge/yamllint (https://yamllint.readthedocs.io/en/stable/rules.html)
--- 			-- https://github.com/stoplightio/spectral (`npm install -g @stoplight/spectral-cli`)
 -- 			vim.api.nvim_create_autocmd({
 -- 				"BufReadPost", "BufWritePost", "InsertLeave"
 -- 			}, {
@@ -286,38 +247,21 @@ return {
 -- 			conform.setup({
 -- 				log_level = vim.log.levels.DEBUG, -- :ConformInfo to show log info
 -- 				formatters_by_ft = {
--- 					-- https://github.com/mvdan/gofumpt
--- 					-- https://pkg.go.dev/golang.org/x/tools/cmd/goimports (auto imports)
--- 					-- https://github.com/incu6us/goimports-reviser
 -- 					go = { "gofumpt", "goimports", "goimports-reviser" },
--- 					-- https://github.com/threedaymonk/htmlbeautifier
 -- 					html = { "htmlbeautifier" },
--- 					-- https://github.com/mantoni/eslint_d.js/
--- 					-- https://github.com/beautifier/js-beautify
 -- 					javascript = { "eslint_d", "js_beautify" },
--- 					-- https://github.com/stedolan/jq
 -- 					jq = { "jq" },
--- 					-- https://github.com/rhysd/fixjson
 -- 					json = { "fixjson" },
--- 					-- https://github.com/executablebooks/mdformat
 -- 					markdown = { "mdformat" },
--- 					-- https://github.com/rust-lang/rustfmt
 -- 					rust = { "rustfmt" },
--- 					-- https://github.com/koalaman/shellcheck
 -- 					sh = { "shellcheck" },
--- 					-- https://www.terraform.io/docs/cli/commands/fmt.html
--- 					-- https://opentofu.org/docs/cli/commands/fmt/  NOTE: This is an alternative `tofu_fmt`
 -- 					terraform = { "terraform_fmt" },
--- 					-- https://github.com/tamasfe/taplo
 -- 					toml = { "taplo" },
 -- 					-- http://xmlsoft.org/xmllint.html
 -- 					xml = { "xmllint" },
--- 					-- https://github.com/mikefarah/yq
 -- 					yq = { "yq" },
--- 					-- https://github.com/ziglang/zig
 -- 					zig = { "zigfmt" },
 -- 					zon = { "zigfmt" },
--- 					-- https://github.com/koalaman/shellcheck
 -- 					zsh = { "shellcheck" }
 -- 				},
 -- 				-- NOTE: The gofumpt formatter isn't working properly.
@@ -330,7 +274,6 @@ return {
 -- 					gofumpt = {
 -- 						command = "gofumpt",
 -- 						args = { "$FILENAME" },
--- 						stdin = false, -- https://github.com/stevearc/conform.nvim/issues/387
 -- 					}
 -- 				},
 -- 				format_after_save = function(bufnr)
