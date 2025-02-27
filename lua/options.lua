@@ -57,5 +57,5 @@ opt.foldtext = '' -- enables syntax highlighting
 opt.foldlevel = 99
 
 -- Diff
--- opt.diffopt = "internal,filler,closeoff"
+opt.diffopt = "internal,filler,closeoff"
 -- opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
