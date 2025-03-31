@@ -4,19 +4,19 @@ return {
     opts = {},
     event = 'VeryLazy',
   },
-  {
-    'danymat/neogen',
-    event = 'VeryLazy',
-    config = true,
-    keys = {
-      {
-        '<leader>N',
-        function ()
-          require('neogen').generate()
-        end
-      },
-    },
-  },
+  -- {
+  --   'danymat/neogen',
+  --   event = 'VeryLazy',
+  --   config = true,
+  --   keys = {
+  --     {
+  --       '<leader>N',
+  --       function ()
+  --         require('neogen').generate()
+  --       end
+  --     },
+  --   },
+  -- },
   -- {
   --   'numToStr/Comment.nvim',
   --   config = function() end,

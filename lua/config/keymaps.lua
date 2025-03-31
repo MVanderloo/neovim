@@ -50,6 +50,7 @@ set('n', '<leader>qd', vim.diagnostic.setloclist, { desc = '[D]iagnostic' })
 -- Lazy.nvim
 set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 
+-- TODO activate these on LSP attach
 set('n', '<leader>la', function() vim.lsp.buf.code_action { apply = true } end, { desc = 'Code actions' })
 
 set('n', '<leader>lr', function()

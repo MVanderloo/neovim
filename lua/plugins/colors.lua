@@ -54,7 +54,6 @@ return {
     lazy = false,
     -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
   },
-  { '0xstepit/flow.nvim', lazy = false },
   {
     'folke/tokyonight.nvim',
     lazy = false,
