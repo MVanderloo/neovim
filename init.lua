@@ -21,6 +21,7 @@ require('lazy').setup {
   root = vim.fn.stdpath 'data' .. '/plugins',
   defaults = { { lazy = true } },
   diff = { 'diffview.nvim' },
+  checker = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {

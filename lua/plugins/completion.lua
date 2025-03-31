@@ -9,6 +9,7 @@ return {
     },
     event = 'InsertEnter',
     version = '*',
+    init = function() vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() }) end,
     opts = {
       keymap = {
         preset = 'super-tab',
@@ -62,9 +63,6 @@ return {
           },
         },
         accept = { auto_brackets = { enabled = false } },
-        -- treesitter integration
-        -- menu = { draw = { treesitter = { 'lsp' } } },
-        -- colorful-menu integration
         menu = {
           draw = {
             columns = { { 'kind_icon' }, { 'label', gap = 1 } },
