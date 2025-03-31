@@ -45,23 +45,16 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 
 -- start terminal in insert mode
-vim.api.nvim_create_autocmd('TermOpen', {
-  pattern = '*',
-  command = 'startinsert | set winfixheight',
-})
+vim.api.nvim_create_autocmd('TermOpen', { command = 'startinsert | set winfixheight' })
 
--- -- start git messages in insert mode
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = { 'gitcommit', 'gitrebase' },
---   command = 'startinsert | 1',
--- })
-
+-- setup LSP folding on attach, if supported
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
     if client:supports_method 'textDocument/foldingRange' then
       local win = vim.api.nvim_get_current_win()
-      -- vim.wo[win][0].foldmethod = 'expr'
+      vim.wo[win][0].foldmethod = 'expr'
       vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
   end,
