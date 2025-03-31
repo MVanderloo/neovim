@@ -4,6 +4,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'xzbdmw/colorful-menu.nvim',
+      'mikavilpas/blink-ripgrep.nvim',
       -- 'kristijanhusak/vim-dadbod-completion',
     },
     event = 'InsertEnter',
@@ -82,10 +83,34 @@ return {
       },
 
       sources = {
+        default = { 'lsp', 'path', 'buffer', 'ripgrep' },
+
         per_filetype = {
           sql = { 'snippets', 'dadbod', 'buffer' },
         },
         providers = {
+          ripgrep = {
+            module = 'blink-ripgrep',
+            name = 'Ripgrep',
+            opts = {
+              prefix_min_len = 3,
+              context_size = 5,
+              max_filesize = '1M',
+              project_root_marker = '.git',
+              project_root_fallback = true,
+              search_casing = '--ignore-case', -- '--smart-case'
+              additional_paths = {},
+              backend = {
+                -- The backend to use for searching. Defaults to "ripgrep".
+                -- Available options:
+                -- - "ripgrep", always use ripgrep
+                -- - "gitgrep", always use git grep
+                -- - "gitgrep-or-ripgrep", use git grep if possible, otherwise
+                --   ripgrep
+                use = 'ripgrep',
+              },
+            },
+          },
           dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
