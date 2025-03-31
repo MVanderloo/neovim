@@ -27,11 +27,20 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- create all intermediate directories along path when saving a file
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function()
-    local file_path = vim.fn.expand '<afile>:p:h'
-    if vim.fn.isdirectory(file_path) == 0 then vim.fn.mkdir(file_path, 'p') end
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*',
+--   callback = function()
+--     local file_path = vim.fn.expand '<afile>:p:h'
+--     if vim.fn.isdirectory(file_path) == 0 then vim.fn.mkdir(file_path, 'p') end
+--   end,
+-- })
+
+-- create all intermediate directories along path when saving a file
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  callback = function(event)
+    if event.match:match '^%w%w+:[\\/][\\/]' then return end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
 
@@ -41,8 +50,19 @@ vim.api.nvim_create_autocmd('TermOpen', {
   command = 'startinsert | set winfixheight',
 })
 
--- start git messages in insert mode
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'gitcommit', 'gitrebase' },
-  command = 'startinsert | 1',
+-- -- start git messages in insert mode
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = { 'gitcommit', 'gitrebase' },
+--   command = 'startinsert | 1',
+-- })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client:supports_method 'textDocument/foldingRange' then
+      local win = vim.api.nvim_get_current_win()
+      -- vim.wo[win][0].foldmethod = 'expr'
+      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
+  end,
 })
