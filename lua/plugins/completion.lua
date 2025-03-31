@@ -1,19 +1,13 @@
 return {
-  -- check these out
-  -- https://cmp.saghen.dev/recipes.html
   {
     'saghen/blink.cmp',
     dependencies = {
       'rafamadriz/friendly-snippets',
-      {
-        'xzbdmw/colorful-menu.nvim',
-        -- opts = { max_width = 30 },
-      },
+      'xzbdmw/colorful-menu.nvim',
+      -- 'kristijanhusak/vim-dadbod-completion',
     },
     event = 'InsertEnter',
     version = '*',
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = 'super-tab',
@@ -86,10 +80,20 @@ return {
           auto_show_delay_ms = 0,
         },
       },
-      -- sources = {
-      --   default = { 'lsp', 'path' },
-      --   cmdline = {},
-      -- },
+
+      sources = {
+        per_filetype = {
+          sql = { 'snippets', 'dadbod', 'buffer' },
+        },
+        providers = {
+          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
+        },
+      },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
+      signature = {
+        enabled = true,
+        trigger = { show_on_insert = false },
+      },
     },
   },
 }

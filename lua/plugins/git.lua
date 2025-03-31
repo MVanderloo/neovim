@@ -5,16 +5,12 @@ return {
     keys = {
       {
         '<leader>gd',
-        function()
-          vim.cmd 'DiffviewOpen'
-        end,
+        function() vim.cmd 'DiffviewOpen' end,
         desc = 'Open Diffview',
       },
       {
-        '<leader>gd',
-        function()
-          vim.cmd 'DiffviewClose'
-        end,
+        '<leader>gD',
+        function() vim.cmd 'DiffviewClose' end,
         desc = 'Close Diffview',
       },
     },
