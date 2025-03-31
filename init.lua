@@ -18,7 +18,7 @@ require 'config'
 
 require('lazy').setup {
   spec = { { import = 'plugins' } },
-  root = vim.fn.stdpath("data") .. "/plugins",
+  root = vim.fn.stdpath 'data' .. '/plugins',
   defaults = { { lazy = true } },
   install = { colorscheme = { 'default' } },
   diff = { 'diffview.nvim' },
