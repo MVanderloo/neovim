@@ -81,7 +81,12 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'buffer', 'ripgrep' },
+        default = {
+          'lsp',
+          'path',
+          -- 'buffer',
+          -- 'ripgrep'
+        },
 
         per_filetype = {
           sql = { 'snippets', 'dadbod', 'buffer' },
