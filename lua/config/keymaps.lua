@@ -52,11 +52,7 @@ set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 
 -- TODO activate these on LSP attach
 set('n', '<leader>la', function() vim.lsp.buf.code_action { apply = true } end, { desc = 'Code actions' })
-
-set('n', '<leader>lr', function()
-  -- vim.lsp.buf.rename()
-  vim.lsp.buf.rename()
-end, { desc = 'Rename' })
+set('n', '<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'Rename' })
 
 set('n', '<leader>th', function()
   local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = 0 }
