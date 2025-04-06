@@ -35,34 +35,34 @@ return {
   --     vim.cmd 'TransparentEnable'
   --   end,
   -- },
-  {
-    'olimorris/onedarkpro.nvim',
-    -- priority = 1000,
-    lazy = false,
-    config = function()
-      -- vim.cmd 'colorscheme onedark_dark'
-      -- return {
-      --   options = {
-      --     -- transparency = true,
-      --   },
-      -- }
-    end,
-  },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
-  },
+  -- {
+  --   'olimorris/onedarkpro.nvim',
+  --   -- priority = 1000,
+  --   lazy = false,
+  --   config = function()
+  --     -- vim.cmd 'colorscheme onedark_dark'
+  --     -- return {
+  --     --   options = {
+  --     --     -- transparency = true,
+  --     --   },
+  --     -- }
+  --   end,
+  -- },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   lazy = false,
+  --   -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
+  -- },
   {
     'folke/tokyonight.nvim',
     lazy = false,
     config = function() vim.cmd 'colorscheme tokyonight' end,
     -- config = true,
   },
-  {
-    'rebelot/kanagawa.nvim',
-    lazy = false,
-  },
-  { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   lazy = false,
+  -- },
+  -- { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
 }

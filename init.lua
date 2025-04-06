@@ -18,10 +18,10 @@ require 'config'
 
 require('lazy').setup {
   spec = { { import = 'plugins' } },
-  root = vim.fn.stdpath 'data' .. '/plugins',
   defaults = { { lazy = true } },
   diff = { 'diffview.nvim' },
   checker = { enabled = false },
+  change_detection = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {

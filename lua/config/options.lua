@@ -59,3 +59,4 @@ opt.foldlevel = 99
 -- Diff
 -- opt.diffopt = "internal,filler,closeoff"
 opt.diffopt = 'filler,internal,closeoff,algorithm:histogram,context:5,linematch:60'
+opt.fillchars:append { diff = "╱" }
