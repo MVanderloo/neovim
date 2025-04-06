@@ -28,14 +28,6 @@ vim.opt.wildignore:append {
 
 return {
   -- {
-  --   'xiyaowong/nvim-transparent',
-  --   priority = 1001,
-  --   lazy = false,
-  --   config = function()
-  --     vim.cmd 'TransparentEnable'
-  --   end,
-  -- },
-  -- {
   --   'olimorris/onedarkpro.nvim',
   --   -- priority = 1000,
   --   lazy = false,
@@ -60,9 +52,4 @@ return {
     config = function() vim.cmd 'colorscheme tokyonight' end,
     -- config = true,
   },
-  -- {
-  --   'rebelot/kanagawa.nvim',
-  --   lazy = false,
-  -- },
-  -- { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
 }
