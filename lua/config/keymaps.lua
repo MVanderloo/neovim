@@ -58,7 +58,9 @@ set('n', '<leader>lr', function()
   vim.lsp.buf.rename()
 end, { desc = 'Rename' })
 
-vim.keymap.set('n', '<leader>th', function()
+set('n', '<leader>th', function()
   local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = 0 }
   vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
 end, { desc = 'Toggle LSP inlay hints' })
+
+set('n', '-', '<cmd>Oil<cr>', { desc = "Open Parent Directory" })
