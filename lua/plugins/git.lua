@@ -1,5 +1,10 @@
 return {
   {
+    'lewis6991/gitsigns.nvim',
+    event = 'UIEnter',
+    config = true,
+  },
+  {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     keys = {
@@ -53,10 +58,10 @@ return {
             { 'n', '[f', actions.select_prev_entry, { desc = 'Open the diff for the previous file' } },
             { 'n', '[F', actions.select_first_entry, { desc = 'Open the diff for the first file' } },
             { 'n', ']F', actions.select_last_entry, { desc = 'Open the diff for the last file' } },
-            -- { 'n', 'gf', actions.goto_file_edit, { desc = 'Open the file in the previous tabpage' } },
+            { 'n', 'gf', actions.goto_file_edit, { desc = 'Open the file in the previous tabpage' } },
             -- { 'n', '<C-w><C-f>', actions.goto_file_split, { desc = 'Open the file in a new split' } },
             -- { 'n', '<C-w>gf', actions.goto_file_tab, { desc = 'Open the file in a new tabpage' } },
-            -- { 'n', '<localleader>f', actions.focus_files, { desc = 'Bring focus to the file panel' } },
+            { 'n', '<localleader>f', actions.focus_files, { desc = 'Bring focus to the file panel' } },
             { 'n', '-', actions.toggle_files, { desc = 'Toggle the file panel.' } },
             { 'n', '<localleader>c', actions.cycle_layout, { desc = 'Cycle through available layouts.' } },
             { 'n', '[x', actions.prev_conflict, { desc = 'In the merge-tool: jump to the previous conflict' } },
@@ -72,8 +77,8 @@ return {
             { 'n', '<localleader>B', actions.conflict_choose_all 'base', { desc = 'Choose the BASE version of a conflict for the whole file' } },
             { 'n', '<localleader>a', actions.conflict_choose 'all', { desc = 'Choose all the versions of a conflict' } },
             { 'n', '<localleader>A', actions.conflict_choose_all 'all', { desc = 'Choose all the versions of a conflict for the whole file' } },
-            { 'n', 'dx', actions.conflict_choose 'none', { desc = 'Delete the conflict region' } },
-            { 'n', 'dX', actions.conflict_choose_all 'none', { desc = 'Delete the conflict region for the whole file' } },
+            { 'n', '<localleader>d', actions.conflict_choose 'none', { desc = 'Delete the conflict region' } },
+            { 'n', '<localleader>D', actions.conflict_choose_all 'none', { desc = 'Delete the conflict region for the whole file' } },
           },
           diff1 = {},
           diff2 = {},
