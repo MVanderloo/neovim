@@ -14,12 +14,12 @@ return {
   {
     'Massolari/lsp-auto-setup.nvim',
     dependencies = { 'neovim/nvim-lspconfig' },
-	event = "UIEnter",
+    event = 'UIEnter',
     config = true,
   },
   {
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    event = { 'BufReadPost' },
     cmd = { 'ConformInfo' },
     keys = {
       {
