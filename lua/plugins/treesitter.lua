@@ -3,7 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'all' },
+      ensure_installed = 'all',
       auto_install = true,
       highlight = {
         enable = true,
@@ -25,63 +25,75 @@ return {
             keymaps = {
               ['af'] = '@function.outer',
               ['if'] = '@function.inner',
-              -- ['ac'] = '@class.outer',
-              -- ['ic'] = '@class.inner',
-              ['ao'] = '@comment.outer',
-              -- ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
+              ['a/'] = '@comment.outer',
+              ['i/'] = '@comment.inner',
               ['aa'] = '@parameter.outer',
               ['ia'] = '@parameter.inner',
               ['aC'] = '@class.outer',
               ['iC'] = '@class.inner',
-              ['ic'] = '@conditional.inner',
               ['ac'] = '@conditional.outer',
-              ['il'] = '@loop.inner',
+              ['ic'] = '@conditional.inner',
               ['al'] = '@loop.outer',
+              ['il'] = '@loop.inner',
+              ['aB'] = '@block.outer',
+              ['iB'] = '@block.inner',
             },
             selection_modes = {
+              ['@function.outer'] = 'v',
+              ['@function.inner'] = 'v',
+              ['@comment.outer'] = 'v',
+              ['@comment.inner'] = 'v',
               ['@parameter.outer'] = 'v',
-              ['@function.outer'] = 'V',
-              ['@class.outer'] = '<c-v>',
+              ['@parameter.inner'] = 'v',
+              ['@class.outer'] = 'V',
+              ['@class.inner'] = 'V',
+              ['@conditional.outer'] = 'v',
+              ['@conditional.inner'] = 'v',
+              ['@loop.outer'] = 'v',
+              ['@loop.inner'] = 'v',
+              ['@block.outer'] = 'V',
+              ['@block.inner'] = 'V',
             },
-            -- If you set this to `true` (default is `false`) then any textobject is
-            -- extended to include preceding or succeeding whitespace. Succeeding
-            -- whitespace has priority in order to act similarly to eg the built-in
-            -- `ap`.
-            --
-            -- Can also be a function which gets passed a table with the keys
-            -- * query_string: eg '@function.inner'
-            -- * selection_mode: eg 'v'
-            -- and should return true or false
             include_surrounding_whitespace = true,
           },
+          -- move = {
+          --   enable = true,
+          --   set_jumps = true,
+          --   goto_next_start = {
+          --     [']f'] = '@function.outer',
+          --     [']/'] = '@comment.outer',
+          --     [']a'] = '@parameter.outer',
+          --     [']C'] = '@class.outer',
+          --     [']c'] = '@conditional.outer',
+          --     [']B'] = '@block.outer',
+          --   },
+          --   goto_previous_start = {
+          --     ['[f'] = '@function.outer',
+          --     ['[/'] = '@comment.outer',
+          --     ['[a'] = '@parameter.outer',
+          --     ['[C'] = '@class.outer',
+          --     ['[c'] = '@conditional.outer',
+          --     ['[B'] = '@block.outer',
+          --   },
+          -- },
           -- swap = {
           --   enable = true,
           --   swap_next = {
-          --     ['<leader>a'] = { query = '@parameter.inner', desc = 'Swap with next parameter' },
+          --     ['snf'] = '@function.outer',
+          --     ['sna'] = '@parameter.inner',
+          --     ['snC'] = '@parameter.inner',
+          --     ['snc'] = '@parameter.inner',
+          --     ['snl'] = '@parameter.inner',
+          --     ['snB'] = '@parameter.inner',
           --   },
           --   swap_previous = {
-          --     ['<leader>A'] = '@parameter.inner',
-          --   },
-          -- },
-          -- move = {
-          --   enable = true,
-          --   set_jumps = true, -- whether to set jumps in the jumplist
-          --   goto_next_start = {
-          --     [']m'] = '@function.outer',
-          --     [']]'] = '@class.outer',
-          --   },
-          --   goto_next_end = {
-          --     [']M'] = '@function.outer',
-          --     [']['] = '@class.outer',
-          --   },
-          --   goto_previous_start = {
-          --     ['[m'] = '@function.outer',
-          --     ['[['] = '@class.outer',
-          --   },
-          --   goto_previous_end = {
-          --     ['[M'] = '@function.outer',
-          --     ['[]'] = '@class.outer',
-          --   },
+          --     ['spf'] = '@parameter.inner',
+          --     ['spa'] = '@parameter.inner',
+          --     ['spC'] = '@parameter.inner',
+          --     ['spc'] = '@parameter.inner',
+          --     ['spl'] = '@parameter.inner',
+          --     ['spB'] = '@parameter.inner',
+          --   }
           -- },
         },
       }
