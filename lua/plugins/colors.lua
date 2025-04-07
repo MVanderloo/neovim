@@ -28,28 +28,21 @@ vim.opt.wildignore:append {
 
 return {
   -- {
-  --   'olimorris/onedarkpro.nvim',
-  --   -- priority = 1000,
-  --   lazy = false,
-  --   config = function()
-  --     -- vim.cmd 'colorscheme onedark_dark'
-  --     -- return {
-  --     --   options = {
-  --     --     -- transparency = true,
-  --     --   },
-  --     -- }
-  --   end,
-  -- },
-  -- {
   --   'catppuccin/nvim',
   --   name = 'catppuccin',
   --   lazy = false,
   --   -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
   -- },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   lazy = false,
+  --   config = function() vim.cmd 'colorscheme tokyonight' end,
+  --   -- config = true,
+  -- },
   {
-    'folke/tokyonight.nvim',
+    'navarasu/onedark.nvim',
     lazy = false,
-    config = function() vim.cmd 'colorscheme tokyonight' end,
-    -- config = true,
+    init = function() vim.cmd 'colorscheme onedark' end,
+    opts = { style = 'darker' },
   },
 }
