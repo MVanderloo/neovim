@@ -2,8 +2,7 @@ return {
   {
     'ibhagwan/fzf-lua',
     dependencies = { 'echasnovski/mini.icons' },
-    event = 'UIEnter',
-    config = true,
+    event = 'VeryLazy',
     keys = {
       {
         '<leader>ff',
