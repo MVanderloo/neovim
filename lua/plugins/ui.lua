@@ -2,8 +2,7 @@ return {
   {
     'utilyre/barbecue.nvim',
     version = '*',
-    -- event = 'BufReadPre',
-    event = 'BufReadPost',
+    event = 'UIEnter',
     dependencies = {
       'SmiteshP/nvim-navic',
       'nvim-tree/nvim-web-devicons',
