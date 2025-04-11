@@ -88,9 +88,9 @@ return {
           -- 'ripgrep'
         },
 
-        per_filetype = {
-          sql = { 'snippets', 'dadbod', 'buffer' },
-        },
+        -- per_filetype = {
+        --   sql = { 'snippets', 'dadbod', 'buffer' },
+        -- },
         providers = {
           ripgrep = {
             module = 'blink-ripgrep',
@@ -114,7 +114,7 @@ return {
               },
             },
           },
-          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
+          -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
       fuzzy = { implementation = 'prefer_rust_with_warning' },
