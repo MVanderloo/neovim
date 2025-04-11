@@ -15,8 +15,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  spec = { { import = 'plugins' } },
-  -- defaults = { { lazy = true } },
+  spec = { import = 'plugins' },
+  defaults = { { lazy = true } },
   diff = { 'diffview.nvim' },
   checker = { enabled = false },
   change_detection = { enabled = false },
