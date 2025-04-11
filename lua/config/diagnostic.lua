@@ -23,3 +23,8 @@ vim.diagnostic.config {
     -- },
   },
 }
+
+vim.keymap.set({ 'n', 'x' }, ']d', function()
+  local d = vim.diagnostic.get_next()
+  if type(d) == nil then vim.diagnostic.jump { diagnostic = d } end
+end)
