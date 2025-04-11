@@ -1,26 +1,19 @@
 return {
-  -- {
-  --   'WieeRd/auto-lsp.nvim',
-  --   dependencies = { 'neovim/nvim-lspconfig' },
-  --   event = 'VeryLazy',
-  --   opts = {
-  --     ['*'] = function()
-  --       return {
-  --         capabilities = require('blink.cmp').get_lsp_capabilities(),
-  --       }
-  --     end,
-  --   },
-  -- },
   {
-    'Massolari/lsp-auto-setup.nvim',
+    'WieeRd/auto-lsp.nvim',
     dependencies = { 'neovim/nvim-lspconfig' },
-    event = 'UIEnter',
+    event = 'VeryLazy',
     config = true,
   },
+  -- {
+  --   'Massolari/lsp-auto-setup.nvim',
+  --   dependencies = { 'neovim/nvim-lspconfig' },
+  --   event = 'UIEnter',
+  --   config = true,
+  -- },
   {
     'stevearc/conform.nvim',
     event = { 'BufReadPost' },
-    cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>lf',
@@ -72,12 +65,9 @@ return {
     --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     -- end,
   },
-  -- require 'lua',
-  -- require 'python',
-  -- require 'tabular',
   {
     'mfussenegger/nvim-lint',
-    -- event = { 'BufReadPost' },
+    event = { 'BufReadPost' },
     config = function()
       local lint = require 'lint'
 
