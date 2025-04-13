@@ -2,12 +2,12 @@ return {
   {
     'saghen/blink.cmp',
     dependencies = {
-      'rafamadriz/friendly-snippets',
       'xzbdmw/colorful-menu.nvim',
       'mikavilpas/blink-ripgrep.nvim',
+      -- 'rafamadriz/friendly-snippets',
       -- 'kristijanhusak/vim-dadbod-completion',
     },
-    event = 'InsertEnter',
+    event = 'VeryLazy',
     version = '*',
     init = function() vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() }) end,
     opts = {
@@ -85,7 +85,7 @@ return {
           'lsp',
           'path',
           -- 'buffer',
-          -- 'ripgrep'
+          'ripgrep'
         },
 
         -- per_filetype = {
