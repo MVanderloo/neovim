@@ -46,9 +46,12 @@ opt.iskeyword:append '-'
 opt.virtualedit = 'block'
 opt.selection = 'exclusive'
 opt.mouse = 'a'
-opt.timeoutlen = 300
 opt.completeopt = 'menuone,noinsert,noselect'
 -- opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,skiprtp,resize,sesdir,tabpages,terminal,winpos,winsize'
+
+-- Key timeout
+vim.opt.timeoutlen = 1000
+vim.opt.ttimeoutlen = 0
 
 -- Folds
 opt.foldmethod = 'expr'
