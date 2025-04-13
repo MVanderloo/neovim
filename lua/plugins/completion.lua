@@ -13,12 +13,6 @@ return {
     opts = {
       keymap = {
         preset = 'super-tab',
-        -- -- preset = 'super-tab'
-        -- -- modified super-tab
-        --  tab, C-n, down cycles forward
-        --  S-tab, C-p, up cycles backwards
-        --  C-e to cancel
-        --  keep typing to accept
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'cancel', 'fallback' },
         ['<Tab>'] = {
@@ -51,18 +45,14 @@ return {
         -- }
       },
       completion = {
+        ghost_text = { enabled = true },
         keyword = { range = 'prefix' },
         trigger = {
           show_on_trigger_character = true,
           show_on_insert_on_trigger_character = true,
           show_in_snippet = false,
         },
-        list = {
-          selection = {
-            preselect = false,
-            auto_insert = true,
-          },
-        },
+        list = { selection = { preselect = false, auto_insert = true } },
         accept = { auto_brackets = { enabled = false } },
         menu = {
           draw = {
@@ -75,24 +65,16 @@ return {
             },
           },
         },
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 0,
-        },
+        documentation = { auto_show = true, auto_show_delay_ms = 0 },
       },
 
       sources = {
-        default = {
-          'lsp',
-          'path',
-          'buffer',
-          'ripgrep',
-        },
-
-        -- per_filetype = {
-        --   sql = { 'snippets', 'dadbod', 'buffer' },
-        -- },
+        default = { 'lsp', 'path', 'buffer', 'ripgrep' },
+        -- per_filetype = { sql = { 'snippets', 'dadbod', 'buffer' } },
         providers = {
+          lsp = { score_offset = 100 },
+          path = { score_offset = 90 },
+          buffer = { score_offset = 10 },
           ripgrep = {
             module = 'blink-ripgrep',
             name = 'Ripgrep',
@@ -114,33 +96,16 @@ return {
                 use = 'ripgrep',
               },
             },
+            score_offset = 0,
           },
           -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
       fuzzy = {
         implementation = 'prefer_rust_with_warning',
-        sorts = {
-          function(a, b)
-            local source_priority = {
-              lsp = 4,
-              path = 3,
-              buffer = 2,
-              riprep= 1,
-            }
-
-            local a_priority = source_priority[a.source_id]
-            local b_priority = source_priority[b.source_id]
-            if a_priority ~= b_priority then return a_priority > b_priority end
-          end,
-          -- 'score',
-          -- 'sort_text',
-        },
+        sorts = { 'score', 'sort_text' },
       },
-      signature = {
-        enabled = true,
-        trigger = { show_on_insert = false },
-      },
+      signature = { enabled = true, trigger = { show_on_insert = false } },
     },
   },
 }
