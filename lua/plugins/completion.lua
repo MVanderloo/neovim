@@ -15,39 +15,40 @@ return {
         preset = 'super-tab',
         -- -- preset = 'super-tab'
         -- -- modified super-tab
-        -- --  tab, C-n, down cycles forward
-        -- --  S-tab, C-p, up cycles backwards
-        -- --  C-e to cancel
-        -- --  keep typing to accept
-        -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        -- ['<C-e>'] = { 'cancel', 'fallback' },
-        -- ['<Tab>'] = {
+        --  tab, C-n, down cycles forward
+        --  S-tab, C-p, up cycles backwards
+        --  C-e to cancel
+        --  keep typing to accept
+        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'cancel', 'fallback' },
+        ['<Tab>'] = {
+          'select_next',
+          -- function(cmp)
+          --   if cmp.snippet_active() then
+          --     return cmp.accept()
+          --   else
+          --     return cmp.select_next()
+          --   end
+          -- end,
+          -- 'snippet_forward',
+          'fallback',
+        },
+        ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<C-n>'] = { 'select_next', 'fallback' },
+        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<C-y>'] = { 'accept' },
+        -- ['<CR>'] = {
         --   function(cmp)
-        --     if cmp.snippet_active() then
+        --     if cmp.get_selected_item().kind == 15 then
         --       return cmp.accept()
-        --     else
-        --       return cmp.select_next()
         --     end
         --   end,
-        --   'snippet_forward',
-        --   'fallback',
-        -- },
-        -- ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-        -- ['<Up>'] = { 'select_prev', 'fallback' },
-        -- ['<Down>'] = { 'select_next', 'fallback' },
-        -- ['<C-p>'] = { 'select_prev', 'fallback' },
-        -- ['<C-n>'] = { 'select_next', 'fallback' },
-        -- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        -- ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-        -- ['<C-y>'] = { 'accept' },
-        -- -- ['<CR>'] = {
-        -- --   function(cmp)
-        -- --     if cmp.get_selected_item().kind == 15 then
-        -- --       return cmp.accept()
-        -- --     end
-        -- --   end,
-        -- --   'fallback'
-        -- -- }
+        --   'fallback'
+        -- }
       },
       completion = {
         keyword = { range = 'prefix' },
@@ -84,8 +85,8 @@ return {
         default = {
           'lsp',
           'path',
-          -- 'buffer',
-          'ripgrep'
+          'buffer',
+          'ripgrep',
         },
 
         -- per_filetype = {
@@ -117,7 +118,25 @@ return {
           -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
-      fuzzy = { implementation = 'prefer_rust_with_warning' },
+      fuzzy = {
+        implementation = 'prefer_rust_with_warning',
+        sorts = {
+          function(a, b)
+            local source_priority = {
+              lsp = 4,
+              path = 3,
+              buffer = 2,
+              riprep= 1,
+            }
+
+            local a_priority = source_priority[a.source_id]
+            local b_priority = source_priority[b.source_id]
+            if a_priority ~= b_priority then return a_priority > b_priority end
+          end,
+          -- 'score',
+          -- 'sort_text',
+        },
+      },
       signature = {
         enabled = true,
         trigger = { show_on_insert = false },
