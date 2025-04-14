@@ -44,9 +44,6 @@ set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window W
 set({ 'n', 'x', 'o' }, 'n', "v:searchforward ? 'nzz' : 'Nzz'", { expr = true, desc = 'Next Search Result' })
 set({ 'n', 'x', 'o' }, 'N', "v:searchforward ? 'Nzz' : 'nzz'", { expr = true, desc = 'Prev Search Result' })
 
--- Add diagnostics to the quickfix list
-set('n', '<leader>qd', vim.diagnostic.setloclist, { desc = '[D]iagnostic' })
-
 -- Lazy.nvim
 set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 
