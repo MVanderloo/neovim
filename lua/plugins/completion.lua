@@ -74,10 +74,11 @@ return {
         providers = {
           lsp = { score_offset = 100 },
           path = { score_offset = 90 },
-          buffer = { score_offset = 10 },
+          buffer = { score_offset = 20 },
           ripgrep = {
             module = 'blink-ripgrep',
             name = 'Ripgrep',
+            score_offset = 10,
             opts = {
               prefix_min_len = 3,
               context_size = 5,
@@ -103,7 +104,10 @@ return {
       },
       fuzzy = {
         implementation = 'prefer_rust_with_warning',
-        sorts = { 'score', 'sort_text' },
+      },
+      signature = {
+        enabled = true,
+        trigger = { show_on_insert = false },
       },
       signature = { enabled = true, trigger = { show_on_insert = false } },
     },
