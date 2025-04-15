@@ -56,4 +56,4 @@ set('n', '<leader>th', function()
   vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
 end, { desc = 'Toggle LSP inlay hints' })
 
-set('n', '-', '<cmd>Oil<cr>', { desc = "Open Parent Directory" })
+set('n', '-', '<cmd>Oil<cr>', { desc = 'Open Parent Directory' })
