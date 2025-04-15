@@ -57,3 +57,17 @@ set('n', '<leader>th', function()
 end, { desc = 'Toggle LSP inlay hints' })
 
 set('n', '-', '<cmd>Oil<cr>', { desc = 'Open Parent Directory' })
+
+-- set({ 'n', 'x' }, ']d', function()
+--   local d = vim.diagnostic.get_next()
+--   if d ~= nil then vim.diagnostic.jump { diagnostic = d } end
+-- end)
+--
+-- set({ 'n', 'x' }, '[d', function()
+--   local d = vim.diagnostic.get_prev()
+--   if d ~= nil then vim.diagnostic.jump { diagnostic = d } end
+-- end)
+
+set({ 'n', 'x' }, '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
+
+set('n', '<C-q>', vim.diagnostic.setqflist)
