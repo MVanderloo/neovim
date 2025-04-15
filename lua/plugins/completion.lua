@@ -97,17 +97,12 @@ return {
                 use = 'ripgrep',
               },
             },
-            score_offset = 0,
           },
           -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
       fuzzy = {
         implementation = 'prefer_rust_with_warning',
-      },
-      signature = {
-        enabled = true,
-        trigger = { show_on_insert = false },
       },
       signature = { enabled = true, trigger = { show_on_insert = false } },
     },
