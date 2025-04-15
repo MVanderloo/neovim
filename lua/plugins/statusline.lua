@@ -2,18 +2,25 @@ return {
   'nvim-lualine/lualine.nvim',
   event = 'UIEnter',
   opts = {
-    refresh = { statusline = 10 },
+    refresh = { statusline = 10, tabline = 10, winbar = 10 },
+    options = {
+      component_separators = { left = '|', right = '|' },
+      section_separators = { left = '', right = '' },
+    },
     sections = {
-      lualine_a = { 'mode' },
+      lualine_a = { 'mode', 'selectioncount' },
       lualine_b = { 'filename' },
       lualine_c = {
+        'diff',
+      },
+      lualine_x = {
+        'searchcount',
         {
           'diagnostics',
           symbols = { error = '󰅙 ', warn = '󰀦 ', info = '󰋼 ', hint = '󰌵 ' },
         },
       },
-      lualine_x = { 'filetype' },
-      lualine_y = { 'encoding'},
+      lualine_y = { 'progress', 'filesize' },
       lualine_z = { 'location' },
     },
     inactive_sections = {
@@ -25,12 +32,12 @@ return {
       lualine_z = {},
     },
     -- tabline = {
-    --   lualine_a = { 'branch' },
-    --   lualine_b = { 'diff' },
-    --   lualine_c = { 'filename' },
+    --   lualine_a = {},
+    --   lualine_b = {},
+    --   lualine_c = {},
     --   lualine_x = {},
     --   lualine_y = {},
-    --   lualine_z = { 'tabs' },
+    --   lualine_z = {},
     -- },
     -- winbar = {
     --   lualine_a = {},
