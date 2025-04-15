@@ -3,9 +3,9 @@ return {
   cmd = { 'CsvViewEnable', 'CsvViewDisable', 'CsvViewToggle' },
   ft = { 'csv', 'tsv' },
   keys = {
-    { '<localleader>e', '<cmd>CsvViewEnable<cr>', desc = 'Enable Csv View' },
-    { '<localleader>d', '<cmd>CsvViewDisable<cr>', desc = 'Disable Csv View' },
-    { '<localleader>t', '<cmd>CsvViewToggle<cr>', desc = 'Toggle Csv View' },
+    { '<localleader>e', '<cmd>CsvViewEnable<cr>', ft = { 'csv', 'tsv' }, desc = 'Enable Csv View' },
+    { '<localleader>d', '<cmd>CsvViewDisable<cr>', ft = { 'csv', 'tsv' }, desc = 'Disable Csv View' },
+    { '<localleader>t', '<cmd>CsvViewToggle<cr>', ft = { 'csv', 'tsv' }, desc = 'Toggle Csv View' },
   },
   opts = {
     view = {
