@@ -24,7 +24,7 @@ opt.signcolumn = 'yes'
 opt.scrolloff = 10
 opt.showmode = false
 opt.cursorline = true
--- opt.cmdheight = 0
+opt.cmdheight = 0
 opt.list = true
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
