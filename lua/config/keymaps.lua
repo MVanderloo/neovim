@@ -71,3 +71,7 @@ set('n', '-', '<cmd>Oil<cr>', { desc = 'Open Parent Directory' })
 set({ 'n', 'x' }, '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
 
 set('n', '<C-q>', vim.diagnostic.setqflist)
+
+set({ 'n', 'x' }, '<leader>ww', '<cmd>SessionSearch<CR>', { desc = 'Session search' })
+set({ 'n', 'x' }, '<leader>ws', '<cmd>SessionSave<CR>', { desc = 'Save session' })
+set({ 'n', 'x' }, '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', { desc = 'Toggle autosave' })
