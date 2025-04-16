@@ -37,6 +37,8 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = vim.fn.expand(os.getenv 'XDG_DATA_HOME' .. '/nvim/undodir')
 opt.undofile = true
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
 
 -- Behavior
 opt.splitright = true
@@ -48,8 +50,6 @@ opt.selection = 'exclusive'
 opt.mouse = 'a'
 opt.completeopt = 'menuone,noinsert,noselect'
 opt.autochdir = true
--- opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,skiprtp,resize,sesdir,tabpages,terminal,winpos,winsize'
-
 
 -- Key timeout
 vim.opt.timeoutlen = 1000
