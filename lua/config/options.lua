@@ -49,7 +49,7 @@ opt.virtualedit = 'block'
 opt.selection = 'exclusive'
 opt.mouse = 'a'
 opt.completeopt = 'menuone,noinsert,noselect'
-opt.autochdir = true
+-- opt.autochdir = true
 
 -- Key timeout
 vim.opt.timeoutlen = 1000
