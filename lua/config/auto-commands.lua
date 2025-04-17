@@ -50,3 +50,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+-- root detection
+vim.api.nvim_create_autocmd('BufEnter', {
+  nested = true,
+  callback = function(data)
+    local names = { '.git', 'Makefile' }
+
+    local path = vim.api.nvim_buf_get_name(data.buf)
+
+    if path == '' then return end
+
+    local root_file = vim.fs.find(names, { path = vim.fs.dirname(path), upward = true })[1]
+    if root_file ~= nil then
+      local root = vim.fs.dirname(root_file)
+      if root ~= nil then
+        vim.fn.chdir(root)
+      end
+    end
+  end
+})
