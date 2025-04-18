@@ -58,6 +58,7 @@ end, { desc = 'Toggle LSP inlay hints' })
 
 set('n', '-', '<cmd>Oil<cr>', { desc = 'Open Parent Directory' })
 
+-- set by mini.bracketed
 -- set({ 'n', 'x' }, ']d', function()
 --   local d = vim.diagnostic.get_next()
 --   if d ~= nil then vim.diagnostic.jump { diagnostic = d } end
@@ -72,6 +73,6 @@ set({ 'n', 'x' }, '<leader>td', function() vim.diagnostic.enable(not vim.diagnos
 
 set('n', '<C-q>', vim.diagnostic.setqflist)
 
-set({ 'n', 'x' }, '<leader>ww', '<cmd>SessionSearch<CR>', { desc = 'Session search' })
-set({ 'n', 'x' }, '<leader>ws', '<cmd>SessionSave<CR>', { desc = 'Save session' })
-set({ 'n', 'x' }, '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', { desc = 'Toggle autosave' })
+set({ 'n', 'x' }, '<leader>sw', '<cmd>SessionSearch<CR>', { desc = 'Session search' })
+set({ 'n', 'x' }, '<leader>ss', '<cmd>SessionSave<CR>', { desc = 'Save session' })
+set({ 'n', 'x' }, '<leader>sa', '<cmd>SessionToggleAutoSave<CR>', { desc = 'Toggle autosave' })
