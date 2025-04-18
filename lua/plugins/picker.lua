@@ -1,92 +1,122 @@
 return {
+  -- {
+  --   'ibhagwan/fzf-lua',
+  --   dependencies = { 'echasnovski/mini.icons' },
+  --   event = 'VeryLazy',
+  --   keys = {
+  --     {
+  --       '<leader>ff',
+  --       function() require('fzf-lua').files() end,
+  --       desc = 'Find Files in project directory',
+  --     },
+  --     {
+  --       '<leader>fg',
+  --       function() require('fzf-lua').live_grep() end,
+  --       desc = 'Find by grepping in project directory',
+  --     },
+  --     {
+  --       '<leader>fc',
+  --       function() require('fzf-lua').files { cwd = vim.fn.stdpath 'config' } end,
+  --       desc = 'Find in neovim configuration',
+  --     },
+  --     {
+  --       '<leader>fh',
+  --       function() require('fzf-lua').helptags() end,
+  --       desc = '[F]ind [H]elp',
+  --     },
+  --     {
+  --       '<leader>fk',
+  --       function() require('fzf-lua').keymaps() end,
+  --       desc = '[F]ind [K]eymaps',
+  --     },
+  --     {
+  --       '<leader>fb',
+  --       function() require('fzf-lua').builtin() end,
+  --       desc = '[F]ind [B]uiltin FZF',
+  --     },
+  --     {
+  --       '<leader>fw',
+  --       function() require('fzf-lua').grep_cword() end,
+  --       desc = '[F]ind current [W]ord',
+  --     },
+  --     {
+  --       '<leader>fW',
+  --       function() require('fzf-lua').grep_cWORD() end,
+  --       desc = '[F]ind current [W]ORD',
+  --     },
+  --     {
+  --       '<leader>fd',
+  --       function() require('fzf-lua').diagnostics_document() end,
+  --       desc = '[F]ind [D]iagnostics',
+  --     },
+  --     {
+  --       '<leader>f.',
+  --       function() require('fzf-lua').resume() end,
+  --       desc = 'Resume Last Fzf',
+  --     },
+  --     {
+  --       '<leader>fr',
+  --       function() require('fzf-lua').oldfiles() end,
+  --       desc = '[F]ind [R]ecent Files',
+  --     },
+  --     {
+  --       '<leader>,',
+  --       function() require('fzf-lua').buffers() end,
+  --       desc = '[,] Find existing buffers',
+  --     },
+  --     {
+  --       '<leader>/',
+  --       function() require('fzf-lua').lgrep_curbuf() end,
+  --       desc = '[/] Live grep the current buffer',
+  --     },
+  --   },
+  --   opts = {
+  --     'default-title',
+  --     fzf_colors = {
+  --       true,
+  --       ['fg'] = { 'fg', 'BlinkCmpGhostText' },
+  --       -- ['bg'] = { 'bg', 'Normal' },
+  --       -- ['hl'] = { 'fg', 'Comment' },
+  --       -- ['fg+'] = { 'fg', 'Normal' },
+  --       -- ['bg+'] = { 'bg', { 'CursorLine', 'Normal' } },
+  --       -- ['hl+'] = { 'fg', 'Statement' },
+  --       -- ['info'] = { 'fg', 'PreProc' },
+  --       -- ['prompt'] = { 'fg', 'Conditional' },
+  --       -- ['pointer'] = { 'fg', 'Exception' },
+  --       -- ['marker'] = { 'fg', 'Keyword' },
+  --       -- ['spinner'] = { 'fg', 'Label' },
+  --       -- ['header'] = { 'fg', 'Comment' },
+  --       -- ['gutter'] = '-1',
+  --     },
+  --     fzf = {
+  --       ['ctrl-d'] = 'preview-page-down',
+  --       ['ctrl-u'] = 'preview-page-up',
+  --       -- ['ctrl-q'] = 'select-all+accept',
+  --     },
+  --     actions = {
+  --       -- files = {
+  --       --   ['default'] = require("fzf-lua").actions.file_edit_or_qf,
+  --       -- },
+  --     },
+  --   },
+  -- },
   {
-    'ibhagwan/fzf-lua',
-    dependencies = { 'echasnovski/mini.icons' },
+    'echasnovski/mini.pick',
+    version = '*',
     event = 'VeryLazy',
     keys = {
-      {
-        '<leader>ff',
-        function() require('fzf-lua').files() end,
-        desc = 'Find Files in project directory',
-      },
-      {
-        '<leader>fg',
-        function() require('fzf-lua').live_grep() end,
-        desc = 'Find by grepping in project directory',
-      },
-      {
-        '<leader>fc',
-        function() require('fzf-lua').files { cwd = vim.fn.stdpath 'config' } end,
-        desc = 'Find in neovim configuration',
-      },
-      {
-        '<leader>fh',
-        function() require('fzf-lua').helptags() end,
-        desc = '[F]ind [H]elp',
-      },
-      {
-        '<leader>fk',
-        function() require('fzf-lua').keymaps() end,
-        desc = '[F]ind [K]eymaps',
-      },
-      {
-        '<leader>fb',
-        function() require('fzf-lua').builtin() end,
-        desc = '[F]ind [B]uiltin FZF',
-      },
-      {
-        '<leader>fw',
-        function() require('fzf-lua').grep_cword() end,
-        desc = '[F]ind current [W]ord',
-      },
-      {
-        '<leader>fW',
-        function() require('fzf-lua').grep_cWORD() end,
-        desc = '[F]ind current [W]ORD',
-      },
-      {
-        '<leader>fd',
-        function() require('fzf-lua').diagnostics_document() end,
-        desc = '[F]ind [D]iagnostics',
-      },
-      {
-        '<leader>f.',
-        function() require('fzf-lua').resume() end,
-        desc = 'Resume Last Fzf',
-      },
-      {
-        '<leader>fr',
-        function() require('fzf-lua').oldfiles() end,
-        desc = '[F]ind [R]ecent Files',
-      },
-      {
-        '<leader>,',
-        function() require('fzf-lua').buffers() end,
-        desc = '[,] Find existing buffers',
-      },
-      {
-        '<leader>/',
-        function() require('fzf-lua').lgrep_curbuf() end,
-        desc = '[/] Live grep the current buffer',
-      },
+      { '<leader>ff', '<cmd>Pick files<cr>' },
+      { '<leader>fg', '<cmd>Pick grep_live<cr>' },
+      { '<leader>,', '<cmd>Pick buffers<cr>' },
+      { '<leader>,', '<cmd>Pick buffers<cr>' },
     },
     opts = {
-      "default-title",
-      fzf_colors = true,
-      fzf = {
-        -- ['ctrl-d'] = 'preview-page-down',
-        -- ['ctrl-u'] = 'preview-page-up',
-        -- ['ctrl-q'] = 'select-all+accept',
-      },
-      actions = {
-        -- files = {
-        --   ['default'] = require("fzf-lua").actions.file_edit_or_qf,
-        -- },
-      },
+      options = { content_from_bottom = true },
     },
   },
   {
     'folke/snacks.nvim',
+    event = 'VeryLazy',
     opts = {
       picker = { enabled = true },
     },
