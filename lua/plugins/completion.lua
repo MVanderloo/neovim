@@ -69,12 +69,12 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'buffer', 'ripgrep' },
+        default = { 'lsp', 'path', 'ripgrep' },
         -- per_filetype = { sql = { 'snippets', 'dadbod', 'buffer' } },
         providers = {
           lsp = { score_offset = 100 },
           path = { score_offset = 90 },
-          buffer = { score_offset = 20 },
+          -- buffer = { score_offset = 20 },
           ripgrep = {
             module = 'blink-ripgrep',
             name = 'Ripgrep',
