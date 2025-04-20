@@ -1,7 +1,8 @@
 return {
+  -- Formatting.
   {
     'stevearc/conform.nvim',
-    event = { 'BufReadPost' },
+    event = 'VeryLazy',
     keys = {
       {
         '<leader>lf',
@@ -11,48 +12,68 @@ return {
       },
     },
     opts = {
+      notify_on_error = false,
       formatters_by_ft = {
+        c = { name = 'clangd', timeout_ms = 500, lsp_format = 'prefer' },
+        javascript = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+        javascriptreact = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+        json = { 'prettier', stop_on_first = true, name = 'dprint', timeout_ms = 500 },
+        jsonc = { 'prettier', stop_on_first = true, name = 'dprint', timeout_ms = 500 },
+        less = { 'prettier' },
         lua = { 'stylua' },
-        python = { 'ruff' },
-
-        -- javascript = { "eslint_d", "js_beautify" },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd' },
-        -- json = { "fixjson" },
-        json5 = { 'prettierd' },
-        jsonc = { 'prettierd' },
+        markdown = { 'prettier' },
+        rust = { name = 'rust_analyzer', timeout_ms = 500, lsp_format = 'prefer' },
+        scss = { 'prettier' },
         sh = { 'shfmt' },
-        -- sh = { "shellcheck" },
-        go = { 'gofumpt', 'goimports', 'goimports-reviser' },
-        rust = { 'rustfmt', lsp_format = 'fallback' },
-        -- rust = { "rustfmt" },
-        yaml = { 'yamlfix' },
-        -- html = { 'htmlbeautifier' },
-        html = { 'prettierd' },
-        css = { 'prettierd' },
-        jq = { 'jq' },
-        markdown = { 'mdformat' },
-        terraform = { 'terraform_fmt' },
-        toml = { 'taplo' },
-        xml = { 'xmllint' },
-        yq = { 'yq' },
-        zig = { 'zigfmt' },
-        zon = { 'zigfmt' },
-        zsh = { 'shellcheck' },
-        ['_'] = { 'trim_whitespace' },
+        typescript = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+        typescriptreact = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+        ['_'] = { 'trim_whitespace', 'trim_newlines' },
       },
-      default_format_opts = { lsp_format = 'fallback' },
-      formatters = {
-        -- config formatters
-        -- shfmt = { prepend_args = { '-i', '2' } },
-      },
+      -- default_format_opts = { lsp_format = 'fallback' },
+      format_on_save = function()
+        if not vim.g.autoformat then return nil end
+        return {}
+      end,
     },
     -- init = function()
-    --   -- why doesn't this work well
     --   vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     -- end,
   },
+  --     formatters_by_ft = {
+  --       lua = { 'stylua' },
+  --       python = { 'ruff' },
+  --
+  --       -- javascript = { "eslint_d", "js_beautify" },
+  --       javascript = { 'prettierd', 'prettier', stop_after_first = true },
+  --       typescript = { 'prettierd', 'prettier', stop_after_first = true },
+  --       json = { 'prettierd' },
+  --       -- json = { "fixjson" },
+  --       json5 = { 'prettierd' },
+  --       jsonc = { 'prettierd' },
+  --       sh = { 'shfmt' },
+  --       -- sh = { "shellcheck" },
+  --       go = { 'gofumpt', 'goimports', 'goimports-reviser' },
+  --       rust = { 'rustfmt', lsp_format = 'fallback' },
+  --       -- rust = { "rustfmt" },
+  --       yaml = { 'yamlfix' },
+  --       -- html = { 'htmlbeautifier' },
+  --       html = { 'prettierd' },
+  --       css = { 'prettierd' },
+  --       jq = { 'jq' },
+  --       markdown = { 'mdformat' },
+  --       terraform = { 'terraform_fmt' },
+  --       toml = { 'taplo' },
+  --       xml = { 'xmllint' },
+  --       yq = { 'yq' },
+  --       zig = { 'zigfmt' },
+  --       zon = { 'zigfmt' },
+  --       zsh = { 'shellcheck' },
+  --       ['_'] = { 'trim_whitespace' },
+  --     },
+  --     formatters = {
+  --       -- config formatters
+  --       -- shfmt = { prepend_args = { '-i', '2' } },
+  --     },
   {
     'mfussenegger/nvim-lint',
     event = { 'BufReadPost' },
