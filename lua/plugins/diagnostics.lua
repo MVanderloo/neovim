@@ -23,12 +23,12 @@ return {
         show_all_diags_on_cursorline = false,
         enable_on_select = true,
         break_line = { enabled = false, after = 30 },
-        severity = {
-          vim.diagnostic.severity.ERROR,
-          vim.diagnostic.severity.WARN,
-          vim.diagnostic.severity.INFO,
-          vim.diagnostic.severity.HINT,
-        },
+        -- severity = {
+        --   vim.diagnostic.severity.ERROR,
+        --   vim.diagnostic.severity.WARN,
+        --   vim.diagnostic.severity.INFO,
+        --   vim.diagnostic.severity.HINT,
+        -- },
       },
       disabled_ft = {},
     },

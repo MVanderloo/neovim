@@ -1,17 +1,5 @@
 return {
   {
-    'WieeRd/auto-lsp.nvim',
-    dependencies = { 'neovim/nvim-lspconfig' },
-    event = 'VeryLazy',
-    config = true,
-  },
-  -- {
-  --   'Massolari/lsp-auto-setup.nvim',
-  --   dependencies = { 'neovim/nvim-lspconfig' },
-  --   event = 'UIEnter',
-  --   config = true,
-  -- },
-  {
     'stevearc/conform.nvim',
     event = { 'BufReadPost' },
     keys = {
