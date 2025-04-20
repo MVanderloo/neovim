@@ -1,4 +1,151 @@
 return {
+  {
+    'ibhagwan/fzf-lua',
+    event = 'VeryLazy',
+    cmd = 'FzfLua',
+    keys = {
+      { '<leader>f.', '<cmd>FzfLua resume<cr>', desc = 'Resume last command' },
+      {
+        '<leader>/',
+        function()
+          require('fzf-lua').lgrep_curbuf {
+            winopts = {
+              height = 0.6,
+              width = 0.5,
+              preview = { vertical = 'up:70%' },
+            },
+          }
+        end,
+        desc = 'Grep current buffer',
+      },
+      { '<leader>fc', '<cmd>FzfLua highlights<cr>', desc = 'Highlights' },
+      { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
+      { '<leader>fD', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', desc = 'Workspace diagnostics' },
+      { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+      { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
+      { '<leader>fg', '<cmd>FzfLua grep_visual<cr>', desc = 'Grep', mode = 'x' },
+      { '<leader>fh', '<cmd>FzfLua help_tags<cr>', desc = 'Help' },
+      {
+        '<leader>fr',
+        function()
+          -- Read from ShaDa to include files that were already deleted from the buffer list.
+          vim.cmd 'rshada!'
+          require('fzf-lua').oldfiles()
+        end,
+        desc = 'Recently opened files',
+      },
+      { 'z=', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
+    },
+    opts = function()
+      return {
+        -- Make stuff better combine with the editor.
+        fzf_colors = {
+          bg = { 'bg', 'Normal' },
+          gutter = { 'bg', 'Normal' },
+          info = { 'fg', 'Conditional' },
+          scrollbar = { 'bg', 'Normal' },
+          separator = { 'fg', 'Comment' },
+        },
+        fzf_opts = {
+          ['--info'] = 'default',
+          ['--layout'] = 'reverse-list',
+        },
+        keymap = {
+          builtin = {
+            ['<C-/>'] = 'toggle-help',
+            ['<C-a>'] = 'toggle-fullscreen',
+            ['<C-i>'] = 'toggle-preview',
+            ['<C-f>'] = 'preview-page-down',
+            ['<C-b>'] = 'preview-page-up',
+          },
+          fzf = {
+            ['alt-s'] = 'toggle',
+            ['alt-a'] = 'toggle-all',
+            ['ctrl-i'] = 'toggle-preview',
+          },
+        },
+        winopts = {
+          height = 0.7,
+          width = 0.55,
+          preview = {
+            scrollbar = false,
+            layout = 'vertical',
+            vertical = 'up:40%',
+          },
+        },
+        defaults = { git_icons = false },
+        previewers = {
+          codeaction = { toggle_behavior = 'extend' },
+        },
+        -- Configuration for specific commands.
+        files = {
+          winopts = {
+            preview = { hidden = true },
+          },
+        },
+        grep = {
+          rg_glob_fn = function(query, opts)
+            local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
+            -- Return the original query if there's no separator.
+            return (regex or query), flags
+          end,
+        },
+        helptags = {
+          actions = {
+            ['enter'] = require('fzf-lua.actions').help_vert,
+          },
+        },
+        lsp = {
+          code_actions = {
+            winopts = {
+              width = 70,
+              height = 20,
+              relative = 'cursor',
+              preview = {
+                hidden = true,
+                vertical = 'down:50%',
+              },
+            },
+          },
+        },
+        oldfiles = {
+          include_current_session = true,
+          winopts = {
+            preview = { hidden = true },
+          },
+        },
+      }
+    end,
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(items, opts, on_choice)
+        local ui_select = require 'fzf-lua.providers.ui_select'
+
+        -- Register the fzf-lua picker the first time we call select.
+        if not ui_select.is_registered() then
+          ui_select.register(function(ui_opts)
+            if ui_opts.kind == 'luasnip' then
+              ui_opts.prompt = 'Snippet choice: '
+              ui_opts.winopts = {
+                relative = 'cursor',
+                height = 0.35,
+                width = 0.3,
+              }
+            elseif ui_opts.kind == 'lsp_message' then
+              ui_opts.winopts = { height = 0.4, width = 0.4 }
+            else
+              ui_opts.winopts = { height = 0.6, width = 0.5 }
+            end
+
+            return ui_opts
+          end)
+        end
+
+        -- Don't show the picker if there's nothing to pick.
+        if #items > 0 then return vim.ui.select(items, opts, on_choice) end
+      end
+    end,
+  },
   -- {
   --   'ibhagwan/fzf-lua',
   --   dependencies = { 'echasnovski/mini.icons' },
@@ -100,82 +247,4 @@ return {
   --     },
   --   },
   -- },
-  {
-    'echasnovski/mini.pick',
-    version = '*',
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>ff', '<cmd>Pick files<cr>' },
-      { '<leader>fg', '<cmd>Pick grep_live<cr>' },
-      { '<leader>,', '<cmd>Pick buffers<cr>' },
-      { '<leader>,', '<cmd>Pick buffers<cr>' },
-    },
-    opts = {
-      options = { content_from_bottom = true },
-    },
-  },
-  {
-    'folke/snacks.nvim',
-    event = 'VeryLazy',
-    opts = {
-      picker = { enabled = true },
-    },
-    keys = {
-      -- { '<leader><space>', function() Snacks.picker.smart() end, desc = 'Smart Find Files' },
-      -- { '<leader>,', function() Snacks.picker.buffers() end, desc = 'Buffers' },
-      -- { '<leader>/', function() Snacks.picker.grep() end, desc = 'Grep' },
-      -- { '<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History' },
-      -- { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History' },
-      -- -- find
-      -- { '<leader>fb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
-      -- { '<leader>fc', function() Snacks.picker.files { cwd = vim.fn.stdpath 'config' } end, desc = 'Find Config File' },
-      -- -- { '<leader>ff', function() Snacks.picker.files() end, desc = 'Find Files' },
-      -- { '<leader>fg', function() Snacks.picker.git_files() end, desc = 'Find Git Files' },
-      -- { '<leader>fp', function() Snacks.picker.projects() end, desc = 'Projects' },
-      -- { '<leader>fr', function() Snacks.picker.recent() end, desc = 'Recent' },
-      -- -- git
-      -- { '<leader>gb', function() Snacks.picker.git_branches() end, desc = 'Git Branches' },
-      -- { '<leader>gl', function() Snacks.picker.git_log() end, desc = 'Git Log' },
-      -- { '<leader>gL', function() Snacks.picker.git_log_line() end, desc = 'Git Log Line' },
-      -- { '<leader>gs', function() Snacks.picker.git_status() end, desc = 'Git Status' },
-      -- { '<leader>gS', function() Snacks.picker.git_stash() end, desc = 'Git Stash' },
-      -- { '<leader>gd', function() Snacks.picker.git_diff() end, desc = 'Git Diff (Hunks)' },
-      -- { '<leader>gf', function() Snacks.picker.git_log_file() end, desc = 'Git Log File' },
-      -- -- Grep
-      -- { '<leader>sb', function() Snacks.picker.lines() end, desc = 'Buffer Lines' },
-      -- { '<leader>sB', function() Snacks.picker.grep_buffers() end, desc = 'Grep Open Buffers' },
-      -- { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
-      -- { '<leader>sw', function() Snacks.picker.grep_word() end, desc = 'Visual selection or word', mode = { 'n', 'x' } },
-      -- -- search
-      -- { '<leader>s"', function() Snacks.picker.registers() end, desc = 'Registers' },
-      -- { '<leader>s/', function() Snacks.picker.search_history() end, desc = 'Search History' },
-      -- { '<leader>sa', function() Snacks.picker.autocmds() end, desc = 'Autocmds' },
-      -- { '<leader>sb', function() Snacks.picker.lines() end, desc = 'Buffer Lines' },
-      -- { '<leader>sc', function() Snacks.picker.command_history() end, desc = 'Command History' },
-      -- { '<leader>sC', function() Snacks.picker.commands() end, desc = 'Commands' },
-      -- { '<leader>sd', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
-      -- { '<leader>sD', function() Snacks.picker.diagnostics_buffer() end, desc = 'Buffer Diagnostics' },
-      -- { '<leader>sh', function() Snacks.picker.help() end, desc = 'Help Pages' },
-      -- { '<leader>sH', function() Snacks.picker.highlights() end, desc = 'Highlights' },
-      -- { '<leader>si', function() Snacks.picker.icons() end, desc = 'Icons' },
-      -- { '<leader>sj', function() Snacks.picker.jumps() end, desc = 'Jumps' },
-      -- { '<leader>sk', function() Snacks.picker.keymaps() end, desc = 'Keymaps' },
-      -- { '<leader>sl', function() Snacks.picker.loclist() end, desc = 'Location List' },
-      -- { '<leader>sm', function() Snacks.picker.marks() end, desc = 'Marks' },
-      -- { '<leader>sM', function() Snacks.picker.man() end, desc = 'Man Pages' },
-      -- { '<leader>sp', function() Snacks.picker.lazy() end, desc = 'Search for Plugin Spec' },
-      -- { '<leader>sq', function() Snacks.picker.qflist() end, desc = 'Quickfix List' },
-      -- { '<leader>sR', function() Snacks.picker.resume() end, desc = 'Resume' },
-      -- { '<leader>su', function() Snacks.picker.undo() end, desc = 'Undo History' },
-      -- { '<leader>uC', function() Snacks.picker.colorschemes() end, desc = 'Colorschemes' },
-      -- -- LSP
-      { 'gd', function() require('snacks').picker.lsp_definitions() end, desc = 'Goto Definition' },
-      { 'gD', function() require('snacks').picker.lsp_declarations() end, desc = 'Goto Declaration' },
-      { 'gr', function() require('snacks').picker.lsp_references() end, nowait = true, desc = 'References' },
-      { 'gI', function() require('snacks').picker.lsp_implementations() end, desc = 'Goto Implementation' },
-      { 'gy', function() require('snacks').picker.lsp_type_definitions() end, desc = 'Goto T[y]pe Definition' },
-      -- { '<leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols' },
-      -- { '<leader>lw', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols' },
-    },
-  },
 }

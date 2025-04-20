@@ -43,9 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    if client == nil then
-      return
-    end
+    if client == nil then return end
 
     -- folding
     if client:supports_method 'textDocument/foldingRange' then
@@ -55,8 +53,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- keybindings
-  --   if client:supports_method then
-  --     vim.keymap.set('i', '<leader>la')
+    --   if client:supports_method then
+    --     vim.keymap.set('i', '<leader>la')
   end,
 })
 
@@ -73,9 +71,31 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local root_file = vim.fs.find(names, { path = vim.fs.dirname(path), upward = true })[1]
     if root_file ~= nil then
       local root = vim.fs.dirname(root_file)
-      if root ~= nil then
-        vim.fn.chdir(root)
-      end
+      if root ~= nil then vim.fn.chdir(root) end
     end
-  end
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Disable features in big files',
+  pattern = 'bigfile',
+  callback = function(args)
+    vim.schedule(function() vim.bo[args.buf].syntax = vim.filetype.match { buf = args.buf } or '' end)
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Close with <q>',
+  pattern = { 'git', 'help', 'man', 'qf', 'query', 'scratch' },
+  callback = function(args) vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf }) end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufDelete', 'BufWipeout' }, {
+  desc = 'Write to ShaDa when deleting/wiping out buffers',
+  command = 'wshada',
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight on yank',
+  callback = function() vim.hl.on_yank { higroup = 'Visual', priority = 250 } end,
 })
