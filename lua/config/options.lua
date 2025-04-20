@@ -26,7 +26,7 @@ opt.showmode = false
 opt.cursorline = true
 opt.cmdheight = 0
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { trail = '·', nbsp = '␣' }
 
 -- Files
 opt.autowriteall = true
@@ -39,7 +39,6 @@ opt.undodir = vim.fn.expand(os.getenv 'XDG_DATA_HOME' .. '/nvim/undodir')
 opt.undofile = true
 opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
-
 -- Behavior
 opt.splitright = true
 opt.splitbelow = true
@@ -48,6 +47,8 @@ opt.iskeyword:append '-'
 opt.virtualedit = 'block'
 opt.selection = 'exclusive'
 opt.mouse = 'a'
+
+-- Completion
 opt.completeopt = 'menuone,noinsert,noselect'
 -- opt.autochdir = true
 
@@ -65,3 +66,6 @@ opt.foldlevel = 99
 -- opt.diffopt = "internal,filler,closeoff"
 opt.diffopt = 'filler,internal,closeoff,algorithm:histogram,context:5,linematch:60'
 opt.fillchars:append { diff = '╱' }
+
+-- Spell
+opt.spelloptions = 'camel'
