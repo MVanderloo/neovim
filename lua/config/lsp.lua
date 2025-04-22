@@ -153,10 +153,9 @@ vim.diagnostic.handlers.virtual_text = {
   hide = hide_handler,
 }
 
-local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
-  return hover {
+  return vim.lsp.buf.hover {
     max_height = math.floor(vim.o.lines * 0.5),
     max_width = math.floor(vim.o.columns * 0.4),
   }
