@@ -26,7 +26,7 @@ opt.showmode = false
 opt.cursorline = true
 opt.cmdheight = 0
 opt.list = true
-opt.listchars = { trail = '·', nbsp = '␣' }
+opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Files
 opt.autowriteall = true
@@ -57,8 +57,8 @@ vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 
 -- Folds
-opt.foldmethod = 'expr'
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldmethod = 'indent'
+-- opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 opt.foldtext = '' -- enables syntax highlighting
 opt.foldlevel = 99
 
