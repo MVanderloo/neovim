@@ -7,7 +7,7 @@ return {
       buffer = { suffix = 'b', options = {} },
       comment = { suffix = 'c', options = {} },
       conflict = { suffix = 'x', options = {} },
-      diagnostic = { suffix = 'd', options = {} },
+      diagnostic = { suffix = '', options = {} },
       file = { suffix = 'f', options = {} },
       indent = { suffix = 'i', options = {} },
       jump = { suffix = 'j', options = {} },
