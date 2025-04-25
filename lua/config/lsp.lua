@@ -154,30 +154,30 @@ end
 -- }
 
 ---@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.buf.hover = function()
-  return vim.lsp.buf.hover {
-    max_height = math.floor(vim.o.lines * 0.5),
-    max_width = math.floor(vim.o.columns * 0.4),
-  }
-end
+-- vim.lsp.buf.hover = function()
+--   return vim.lsp.buf.hover {
+--     max_height = math.floor(vim.o.lines * 0.5),
+--     max_width = math.floor(vim.o.columns * 0.4),
+--   }
+-- end
 
 ---@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.buf.signature_help = function()
-  return vim.lsp.buf.signature_help {
-    max_height = math.floor(vim.o.lines * 0.5),
-    max_width = math.floor(vim.o.columns * 0.4),
-  }
-end
+-- vim.lsp.buf.signature_help = function()
+--   return vim.lsp.buf.signature_help {
+--     max_height = math.floor(vim.o.lines * 0.5),
+--     max_width = math.floor(vim.o.columns * 0.4),
+--   }
+-- end
 
 -- Update mappings when registering dynamic capabilities.
-vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
-  local client = vim.lsp.get_client_by_id(ctx.client_id)
-  if not client then return end
-
-  on_attach(client, vim.api.nvim_get_current_buf())
-
-  return vim.lsp.handlers[methods.client_registerCapability](err, res, ctx)
-end
+-- vim.lsp.handlers[methods.client_registerCapability] = function(err, res, ctx)
+--   local client = vim.lsp.get_client_by_id(ctx.client_id)
+--   if not client then return end
+--
+--   on_attach(client, vim.api.nvim_get_current_buf())
+--
+--   return vim.lsp.handlers[methods.client_registerCapability](err, res, ctx)
+-- end
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'Configure LSP keymaps',
@@ -191,15 +191,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Set up LSP servers.
-vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
-  once = true,
-  callback = function()
-    local server_configs = vim
-      .iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
-      :map(function(file) return vim.fn.fnamemodify(file, ':t:r') end)
-      :totable()
-    vim.lsp.enable(server_configs)
-  end,
-})
+-- vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+--   once = true,
+--   callback = function()
+--     local server_configs = vim
+--       .iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
+--       :map(function(file) return vim.fn.fnamemodify(file, ':t:r') end)
+--       :totable()
+--     vim.lsp.enable(server_configs)
+--   end,
+-- })
+
+vim.lsp.enable({ 'ruff', 'basedpyright', 'lua_ls' })
 
 return M
