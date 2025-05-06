@@ -2,11 +2,10 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
-    ftype = { "markdown" },
+    ftype = { 'markdown' },
     opts = {
-      completions = {
-        blink = { enabled = true },
-      },
+      -- completions was causing some error while i was not in markdown
+      -- completions = { blink = { enabled = true } }
     },
   },
 }
