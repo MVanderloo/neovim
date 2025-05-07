@@ -4,45 +4,34 @@ return {
     dependencies = {
       'xzbdmw/colorful-menu.nvim',
       'mikavilpas/blink-ripgrep.nvim',
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
       -- 'kristijanhusak/vim-dadbod-completion',
     },
     event = 'VeryLazy',
     version = '*',
-    init = function() vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() }) end,
+    -- I believe this is done automatically
+    -- init = function() vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() }) end,
     opts = {
       keymap = {
         preset = 'super-tab',
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        -- cancel
         ['<C-e>'] = { 'cancel', 'fallback' },
-        ['<Tab>'] = {
-          'select_next',
-          -- function(cmp)
-          --   if cmp.snippet_active() then
-          --     return cmp.accept()
-          --   else
-          --     return cmp.select_next()
-          --   end
-          -- end,
-          -- 'snippet_forward',
-          'fallback',
-        },
+
+        -- select
+        ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-        ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<Up>'] = { 'select_prev', 'fallback' },
         ['<C-n>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<C-y>'] = { 'accept', 'select_and_accept' },
+
+        -- documentation
+        ['<C-z>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<C-y>'] = { 'accept' },
-        -- ['<CR>'] = {
-        --   function(cmp)
-        --     if cmp.get_selected_item().kind == 15 then
-        --       return cmp.accept()
-        --     end
-        --   end,
-        --   'fallback'
-        -- }
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
       },
       completion = {
         ghost_text = { enabled = true },
@@ -53,10 +42,11 @@ return {
           show_in_snippet = false,
         },
         list = { selection = { preselect = false, auto_insert = true } },
-        accept = { auto_brackets = { enabled = false } },
+        -- accept = { auto_brackets = { enabled = false } },
+        accept = { auto_brackets = { enabled = true } },
         menu = {
           draw = {
-            columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+            columns = { { 'label', gap = 1 }, { 'kind_icon' } },
             components = {
               label = {
                 text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
@@ -67,14 +57,26 @@ return {
         },
         documentation = { auto_show = true, auto_show_delay_ms = 0 },
       },
-
+      cmdline = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'ripgrep' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
         -- per_filetype = { sql = { 'snippets', 'dadbod', 'buffer' } },
         providers = {
           lsp = { score_offset = 100 },
-          path = { score_offset = 90 },
-          -- buffer = { score_offset = 20 },
+          path = {
+            score_offset = 90,
+            opts = { get_cwd = function(_) return vim.fn.getcwd() end },
+          },
+          snippets = {
+            score_offset = 80,
+            max_items = 3,
+            min_keyword_length = 2,
+          },
+          buffer = {
+            score_offset = 15,
+            max_items = 3,
+            min_keyword_length = 3,
+          },
           ripgrep = {
             module = 'blink-ripgrep',
             name = 'Ripgrep',
@@ -87,23 +89,13 @@ return {
               project_root_fallback = true,
               search_casing = '--ignore-case', -- '--smart-case'
               additional_paths = {},
-              backend = {
-                -- The backend to use for searching. Defaults to "ripgrep".
-                -- Available options:
-                -- - "ripgrep", always use ripgrep
-                -- - "gitgrep", always use git grep
-                -- - "gitgrep-or-ripgrep", use git grep if possible, otherwise
-                --   ripgrep
-                use = 'ripgrep',
-              },
             },
           },
+
           -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
-      fuzzy = {
-        implementation = 'prefer_rust_with_warning',
-      },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true, trigger = { show_on_insert = false } },
     },
   },
