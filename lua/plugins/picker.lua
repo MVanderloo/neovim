@@ -3,6 +3,9 @@ return {
     'ibhagwan/fzf-lua',
     event = 'VeryLazy',
     cmd = 'FzfLua',
+    init = function()
+      require('fzf-lua').register_ui_select()
+    end,
     keys = {
       { '<leader>f.', '<cmd>FzfLua resume<cr>', desc = 'Resume last command' },
       {
@@ -37,14 +40,16 @@ return {
       { 'z=', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
     },
     opts = function()
+      local actions = require('fzf-lua').actions
       return {
-        -- Make stuff better combine with the editor.
+        -- { 'telescope' },
         fzf_colors = {
-          bg = { 'bg', 'Normal' },
-          gutter = { 'bg', 'Normal' },
-          info = { 'fg', 'Conditional' },
-          scrollbar = { 'bg', 'Normal' },
-          separator = { 'fg', 'Comment' },
+          -- true,
+          -- bg = { 'bg', 'Normal' },
+          -- gutter = { 'bg', 'Normal' },
+          -- info = { 'fg', 'Conditional' },
+          -- scrollbar = { 'bg', 'Normal' },
+          -- separator = { 'fg', 'Comment' },
         },
         fzf_opts = {
           ['--info'] = 'default',
@@ -53,20 +58,66 @@ return {
         keymap = {
           builtin = {
             ['<C-/>'] = 'toggle-help',
-            ['<C-a>'] = 'toggle-fullscreen',
-            -- ['<C-i>'] = 'toggle-preview',
+            ['<C-a>'] = 'select-all',
+            ['<C-i>'] = 'toggle+down',
+            ['<C-S-i>'] = 'toggle+up',
             ['<C-f>'] = 'preview-page-down',
             ['<C-b>'] = 'preview-page-up',
+            -- -- neovim `:tmap` mappings for the fzf win
+            -- -- true,        -- uncomment to inherit all the below in your custom config
+            -- ["<M-Esc>"]     = "hide",     -- hide fzf-lua, `:FzfLua resume` to continue
+            -- ["<F1>"]        = "toggle-help",
+            -- ["<F2>"]        = "toggle-fullscreen",
+            -- -- Only valid with the 'builtin' previewer
+            -- ["<F3>"]        = "toggle-preview-wrap",
+            -- ["<F4>"]        = "toggle-preview",
+            -- -- Rotate preview clockwise/counter-clockwise
+            -- ["<F5>"]        = "toggle-preview-ccw",
+            -- ["<F6>"]        = "toggle-preview-cw",
+            -- -- `ts-ctx` binds require `nvim-treesitter-context`
+            -- ["<F7>"]        = "toggle-preview-ts-ctx",
+            -- ["<F8>"]        = "preview-ts-ctx-dec",
+            -- ["<F9>"]        = "preview-ts-ctx-inc",
+            -- ["<S-Left>"]    = "preview-reset",
+            -- ["<S-down>"]    = "preview-page-down",
+            -- ["<S-up>"]      = "preview-page-up",
+            -- ["<M-S-down>"]  = "preview-down",
+            -- ["<M-S-up>"]    = "preview-up",
           },
           fzf = {
-            ['alt-s'] = 'toggle',
-            ['alt-a'] = 'toggle-all',
-            -- ['ctrl-i'] = 'toggle-preview',
+            ['ctrl-z'] = 'abort',
+            ['ctrl-u'] = 'unix-line-discard',
+            ['ctrl-f'] = 'half-page-down',
+            ['ctrl-b'] = 'half-page-up',
+            -- ["ctrl-a"]      = "beginning-of-line",
+            -- ["ctrl-e"]      = "end-of-line",
+            ['ctrl-a'] = 'toggle-all',
+            ['alt-g'] = 'first',
+            ['alt-G'] = 'last',
+            -- ["f3"]          = "toggle-preview-wrap",
+            -- ["f4"]          = "toggle-preview",
+            ['shift-down'] = 'preview-page-down',
+            ['shift-up'] = 'preview-page-up',
+          },
+        },
+        actions = {
+          files = {
+            -- true,
+            ['ctrl-q'] = actions.file_edit_or_qf,
+            ['enter'] = actions.file_edit,
+            ['ctrl-s'] = actions.file_split,
+            ['ctrl-v'] = actions.file_vsplit,
+            ['ctrl-t'] = actions.file_tabedit,
+            ['alt-q'] = actions.file_sel_to_qf,
+            ['alt-Q'] = actions.file_sel_to_ll,
+            ['alt-i'] = actions.toggle_ignore,
+            ['alt-h'] = actions.toggle_hidden,
+            ['alt-f'] = actions.toggle_follow,
           },
         },
         winopts = {
-          height = 0.7,
-          width = 0.55,
+          height = 0.8,
+          width = 0.7,
           preview = {
             scrollbar = false,
             layout = 'vertical',
@@ -78,11 +129,11 @@ return {
           codeaction = { toggle_behavior = 'extend' },
         },
         -- Configuration for specific commands.
-        files = {
-          winopts = {
-            preview = { hidden = true },
-          },
-        },
+        -- files = {
+        --   winopts = {
+        --     preview = { hidden = true },
+        --   },
+        -- },
         grep = {
           rg_glob_fn = function(query, opts)
             local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
@@ -92,7 +143,7 @@ return {
         },
         helptags = {
           actions = {
-            ['enter'] = require('fzf-lua.actions').help_vert,
+            ['enter'] = actions.help_vert,
           },
         },
         lsp = {
@@ -116,135 +167,5 @@ return {
         },
       }
     end,
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(items, opts, on_choice)
-        local ui_select = require 'fzf-lua.providers.ui_select'
-
-        -- Register the fzf-lua picker the first time we call select.
-        if not ui_select.is_registered() then
-          ui_select.register(function(ui_opts)
-            if ui_opts.kind == 'luasnip' then
-              ui_opts.prompt = 'Snippet choice: '
-              ui_opts.winopts = {
-                relative = 'cursor',
-                height = 0.35,
-                width = 0.3,
-              }
-            elseif ui_opts.kind == 'lsp_message' then
-              ui_opts.winopts = { height = 0.4, width = 0.4 }
-            else
-              ui_opts.winopts = { height = 0.6, width = 0.5 }
-            end
-
-            return ui_opts
-          end)
-        end
-
-        -- Don't show the picker if there's nothing to pick.
-        if #items > 0 then return vim.ui.select(items, opts, on_choice) end
-      end
-    end,
   },
-  -- {
-  --   'ibhagwan/fzf-lua',
-  --   dependencies = { 'echasnovski/mini.icons' },
-  --   event = 'VeryLazy',
-  --   keys = {
-  --     {
-  --       '<leader>ff',
-  --       function() require('fzf-lua').files() end,
-  --       desc = 'Find Files in project directory',
-  --     },
-  --     {
-  --       '<leader>fg',
-  --       function() require('fzf-lua').live_grep() end,
-  --       desc = 'Find by grepping in project directory',
-  --     },
-  --     {
-  --       '<leader>fc',
-  --       function() require('fzf-lua').files { cwd = vim.fn.stdpath 'config' } end,
-  --       desc = 'Find in neovim configuration',
-  --     },
-  --     {
-  --       '<leader>fh',
-  --       function() require('fzf-lua').helptags() end,
-  --       desc = '[F]ind [H]elp',
-  --     },
-  --     {
-  --       '<leader>fk',
-  --       function() require('fzf-lua').keymaps() end,
-  --       desc = '[F]ind [K]eymaps',
-  --     },
-  --     {
-  --       '<leader>fb',
-  --       function() require('fzf-lua').builtin() end,
-  --       desc = '[F]ind [B]uiltin FZF',
-  --     },
-  --     {
-  --       '<leader>fw',
-  --       function() require('fzf-lua').grep_cword() end,
-  --       desc = '[F]ind current [W]ord',
-  --     },
-  --     {
-  --       '<leader>fW',
-  --       function() require('fzf-lua').grep_cWORD() end,
-  --       desc = '[F]ind current [W]ORD',
-  --     },
-  --     {
-  --       '<leader>fd',
-  --       function() require('fzf-lua').diagnostics_document() end,
-  --       desc = '[F]ind [D]iagnostics',
-  --     },
-  --     {
-  --       '<leader>f.',
-  --       function() require('fzf-lua').resume() end,
-  --       desc = 'Resume Last Fzf',
-  --     },
-  --     {
-  --       '<leader>fr',
-  --       function() require('fzf-lua').oldfiles() end,
-  --       desc = '[F]ind [R]ecent Files',
-  --     },
-  --     {
-  --       '<leader>,',
-  --       function() require('fzf-lua').buffers() end,
-  --       desc = '[,] Find existing buffers',
-  --     },
-  --     {
-  --       '<leader>/',
-  --       function() require('fzf-lua').lgrep_curbuf() end,
-  --       desc = '[/] Live grep the current buffer',
-  --     },
-  --   },
-  --   opts = {
-  --     'default-title',
-  --     fzf_colors = {
-  --       true,
-  --       ['fg'] = { 'fg', 'BlinkCmpGhostText' },
-  --       -- ['bg'] = { 'bg', 'Normal' },
-  --       -- ['hl'] = { 'fg', 'Comment' },
-  --       -- ['fg+'] = { 'fg', 'Normal' },
-  --       -- ['bg+'] = { 'bg', { 'CursorLine', 'Normal' } },
-  --       -- ['hl+'] = { 'fg', 'Statement' },
-  --       -- ['info'] = { 'fg', 'PreProc' },
-  --       -- ['prompt'] = { 'fg', 'Conditional' },
-  --       -- ['pointer'] = { 'fg', 'Exception' },
-  --       -- ['marker'] = { 'fg', 'Keyword' },
-  --       -- ['spinner'] = { 'fg', 'Label' },
-  --       -- ['header'] = { 'fg', 'Comment' },
-  --       -- ['gutter'] = '-1',
-  --     },
-  --     fzf = {
-  --       ['ctrl-d'] = 'preview-page-down',
-  --       ['ctrl-u'] = 'preview-page-up',
-  --       -- ['ctrl-q'] = 'select-all+accept',
-  --     },
-  --     actions = {
-  --       -- files = {
-  --       --   ['default'] = require("fzf-lua").actions.file_edit_or_qf,
-  --       -- },
-  --     },
-  --   },
-  -- },
 }
