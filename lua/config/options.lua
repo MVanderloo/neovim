@@ -41,7 +41,7 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = vim.fn.stdpath('data') .. '/undo'
 opt.undofile = true
-opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,tabpages,winpos,winsize'
 
 -- Behavior
 opt.splitright = true
