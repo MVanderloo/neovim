@@ -143,11 +143,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --   end,
 -- })
 
--- vim.lsp.enable { 'ruff', 'basedpyright', 'lua_ls', 'rust_analyzer' }
-
--- view logs
--- :lua vim.cmd.edit(vim.lsp.get_log_path())
--- elevate debugging
--- vim.lsp.set_log_level('debug')
+vim.lsp.enable { 'ruff', 'basedpyright', 'lua_ls', 'rust_analyzer', 'awk_ls', 'bashls', 'jsonls', 'taplo', 'yamlls', 'ty' }
 
 return M
