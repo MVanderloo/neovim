@@ -27,7 +27,7 @@ opt.cursorline = true
 opt.cmdheight = 0
 opt.list = true
 opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
-opt.winborder = "rounded" -- "single" "rounded" "bold"
+opt.winborder = 'rounded' -- "single" "rounded" "bold"
 
 -- make window background transparent
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
