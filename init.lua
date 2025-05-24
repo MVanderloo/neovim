@@ -17,6 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+-- experimental UI for 0.12
+-- https://github.com/neovim/neovim/pull/27855
+require('vim._extui').enable {}
+vim.opt.cmdheight = 0
+
 require('lazy').setup {
   spec = { import = 'plugins' },
   -- defaults = { { lazy = true } },
