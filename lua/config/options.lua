@@ -39,7 +39,7 @@ opt.updatetime = 500
 opt.hidden = true
 opt.swapfile = false
 opt.backup = false
-opt.undodir = vim.fn.expand(os.getenv 'XDG_DATA_HOME' .. '/nvim/undodir')
+opt.undodir = vim.fn.expand(os.getenv '~/.local/share/nvim/undodir')
 opt.undofile = true
 opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
