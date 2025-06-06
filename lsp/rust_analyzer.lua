@@ -1,5 +1,3 @@
--- Install with: rustup component add rust-analyzer
-
 ---@type vim.lsp.Config
 return {
   cmd = { 'rust-analyzer' },
@@ -8,7 +6,6 @@ return {
   settings = {
     ['rust-analyzer'] = {
       inlayHints = {
-        -- These are a bit too much.
         chainingHints = { enable = false },
       },
     },
