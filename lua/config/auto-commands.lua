@@ -1,10 +1,13 @@
 -- check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
-  pattern = '*',
-  callback = function()
-    if vim.fn.mode() ~= 'c' then vim.cmd 'checktime' end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+--   pattern = '*',
+--   callback = function()
+--     if vim.fn.mode() ~= 'c' then vim.cmd 'checktime' end
+--   end,
+-- })
+
+-- above was giving me errors, folke recommended the below snippet
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd('TextYankPost', {
