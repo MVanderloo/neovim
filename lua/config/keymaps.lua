@@ -28,10 +28,10 @@ set('v', '<', '<gv', { silent = true, noremap = true })
 set('v', '>', '>gv', { silent = true, noremap = true })
 
 -- move between panes
-set('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
-set('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
-set('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
-set('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
+-- set({ 'n', 'x', 't' }, '<C-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
+-- set({ 'n', 'x', 't' }, '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
+-- set({ 'n', 'x', 't' }, '<C-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
+-- set({ 'n', 'x', 't' }, '<C-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
 
 -- Resize window using <ctrl> arrow keys
 set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
