@@ -54,14 +54,14 @@ return {
           builtin = {
             ['<C-/>'] = 'toggle-help',
             ['<C-a>'] = 'toggle-fullscreen',
-            ['<C-i>'] = 'toggle-preview',
+            -- ['<C-i>'] = 'toggle-preview',
             ['<C-f>'] = 'preview-page-down',
             ['<C-b>'] = 'preview-page-up',
           },
           fzf = {
             ['alt-s'] = 'toggle',
             ['alt-a'] = 'toggle-all',
-            ['ctrl-i'] = 'toggle-preview',
+            -- ['ctrl-i'] = 'toggle-preview',
           },
         },
         winopts = {
