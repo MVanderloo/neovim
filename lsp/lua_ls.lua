@@ -6,7 +6,7 @@
 return {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
-  root_markers = { '.luarc.json', '.luarc.jsonc' },
+  root_markers = { '.luarc.json', '.luarc.jsonc', '.nvim.lua' },
   settings = {
     Lua = {
       completion = { callSnippet = 'Replace' },
@@ -18,6 +18,7 @@ return {
       },
       runtime = {
         version = 'LuaJIT',
+        path = {'lua/?.lua', 'lua/?/init.lua'},
       },
       workspace = {
         checkThirdParty = false,
@@ -26,6 +27,7 @@ return {
           '${3rd}/luv/library',
         },
       },
+      telemetry = { enable = false },
     },
   },
 }
