@@ -73,3 +73,6 @@ opt.fillchars:append { diff = '╱' }
 
 -- Spell
 opt.spelloptions = 'camel'
+
+-- execute .nvim.lua for project config
+opt.exrc = true
