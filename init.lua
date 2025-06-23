@@ -19,10 +19,10 @@ vim.g.maplocalleader = '\\'
 
 -- experimental UI for 0.12
 -- https://github.com/neovim/neovim/pull/27855
-if vim.inspect(vim.version().minor >= 12) then
-  require('vim._extui').enable {}
-  vim.opt.cmdheight = 0
-end
+-- if vim.inspect(vim.version().minor >= 12) then
+--   require('vim._extui').enable {}
+--   vim.opt.cmdheight = 0
+-- end
 
 require('lazy').setup {
   spec = { import = 'plugins' },
