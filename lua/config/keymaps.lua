@@ -76,3 +76,7 @@ set('n', '<C-q>', vim.diagnostic.setqflist)
 set({ 'n', 'x' }, '<leader>sw', '<cmd>SessionSearch<CR>', { desc = 'Session search' })
 set({ 'n', 'x' }, '<leader>ss', '<cmd>SessionSave<CR>', { desc = 'Save session' })
 set({ 'n', 'x' }, '<leader>sa', '<cmd>SessionToggleAutoSave<CR>', { desc = 'Toggle autosave' })
+
+-- tab navigation
+set({ 'n', 'x' }, '[[', 'gT', { desc = 'Previous Tab'})
+set({ 'n', 'x' }, ']]', 'gt', { desc = 'Next Tab'})
