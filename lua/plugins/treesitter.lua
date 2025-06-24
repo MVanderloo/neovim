@@ -1,15 +1,13 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = { "OXY2DEV/markview.nvim" }, -- markview provides treesitter queries
     branch = 'main',
     build = ':TSUpdate',
     opts = {
       ensure_installed = 'all',
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
+      highlight = { enable = true },
+      indent = { enable = true }
     },
   },
   {
