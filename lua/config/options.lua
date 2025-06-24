@@ -8,6 +8,7 @@ opt.expandtab = true
 opt.smartindent = true
 opt.wrap = true
 opt.breakindent = true
+opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- Search
 opt.incsearch = true
