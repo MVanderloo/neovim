@@ -78,5 +78,5 @@ set({ 'n', 'x' }, '<leader>ss', '<cmd>SessionSave<CR>', { desc = 'Save session' 
 set({ 'n', 'x' }, '<leader>sa', '<cmd>SessionToggleAutoSave<CR>', { desc = 'Toggle autosave' })
 
 -- tab navigation
-set({ 'n', 'x' }, '[[', 'gT', { desc = 'Previous Tab'})
-set({ 'n', 'x' }, ']]', 'gt', { desc = 'Next Tab'})
+set({ 'n', 'x' }, '[[', 'gT', { desc = 'Previous Tab' })
+set({ 'n', 'x' }, ']]', 'gt', { desc = 'Next Tab' })
