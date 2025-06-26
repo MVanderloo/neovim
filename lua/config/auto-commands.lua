@@ -7,7 +7,7 @@
 -- })
 
 -- above was giving me errors, folke recommended the below snippet
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, { command = 'checktime' })
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd('TextYankPost', {

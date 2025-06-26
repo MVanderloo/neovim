@@ -3,9 +3,7 @@ return {
     'ibhagwan/fzf-lua',
     event = 'VeryLazy',
     cmd = 'FzfLua',
-    init = function()
-      require('fzf-lua').register_ui_select()
-    end,
+    init = function() require('fzf-lua').register_ui_select() end,
     keys = {
       { '<leader>f.', '<cmd>FzfLua resume<cr>', desc = 'Resume last command' },
       {

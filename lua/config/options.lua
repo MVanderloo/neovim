@@ -40,7 +40,7 @@ opt.updatetime = 500
 opt.hidden = true
 opt.swapfile = false
 opt.backup = false
-opt.undodir = vim.fn.stdpath('data') .. '/undo'
+opt.undodir = vim.fn.stdpath 'data' .. '/undo'
 opt.undofile = true
 opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,tabpages,winpos,winsize'
 
