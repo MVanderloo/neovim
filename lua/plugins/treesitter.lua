@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = { "OXY2DEV/markview.nvim" }, -- markview provides treesitter queries
+    dependencies = { "OXY2DEV/markview.nvim" }, -- markview provides treesitter queries and must be loaded first
     branch = 'main',
     build = ':TSUpdate',
     opts = {
