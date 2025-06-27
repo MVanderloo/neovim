@@ -5,6 +5,7 @@ return {
       'xzbdmw/colorful-menu.nvim',
       'mikavilpas/blink-ripgrep.nvim',
       'rafamadriz/friendly-snippets',
+      'OXY2DEV/markview.nvim',
       -- 'kristijanhusak/vim-dadbod-completion',
     },
     event = 'VeryLazy',
