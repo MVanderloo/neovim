@@ -27,18 +27,18 @@ vim.opt.wildignore:append {
 }
 
 return {
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'catppuccin',
-  --   lazy = false,
-  --   config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
-  -- },
   {
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
+    name = 'catppuccin',
     lazy = false,
-    config = function() vim.cmd 'colorscheme tokyonight' end,
-    -- config = true,
+    config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
   },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   lazy = false,
+  --   config = function() vim.cmd 'colorscheme tokyonight' end,
+  --   -- config = true,
+  -- },
   -- {
   --   'navarasu/onedark.nvim',
   --   lazy = false,
