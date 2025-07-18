@@ -31,7 +31,7 @@ return {
     'catppuccin/nvim',
     name = 'catppuccin',
     lazy = false,
-    config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
+    config = function() vim.cmd 'colorscheme catppuccin-macchiato' end,
   },
   -- {
   --   'folke/tokyonight.nvim',
@@ -44,5 +44,10 @@ return {
   --   lazy = false,
   --   init = function() vim.cmd 'colorscheme onedark' end,
   --   opts = { style = 'darker' },
+  -- },
+  -- {
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   config = function() vim.cmd 'colorscheme rose-pine-moon' end,
   -- },
 }
