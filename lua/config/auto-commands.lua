@@ -41,31 +41,11 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- start terminal in insert mode
 vim.api.nvim_create_autocmd('TermOpen', { command = 'startinsert | set winfixheight' })
 
--- integrate LSP capabilities on attach
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-    if client == nil then return end
-
-    -- folding
-    -- if client:supports_method 'textDocument/foldingRange' then
-    --   local win = vim.api.nvim_get_current_win()
-    --   vim.wo[win][0].foldmethod = 'expr'
-    --   vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
-    -- end
-
-    -- keybindings
-    --   if client:supports_method then
-    --     vim.keymap.set('i', '<leader>la')
-  end,
-})
-
 -- root detection
 vim.api.nvim_create_autocmd('BufEnter', {
   nested = true,
   callback = function(data)
-    local names = { '.git', 'Makefile' }
+    local names = { '.git' }
 
     local path = vim.api.nvim_buf_get_name(data.buf)
 
