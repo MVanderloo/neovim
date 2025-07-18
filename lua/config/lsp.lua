@@ -144,16 +144,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- })
 
 vim.lsp.enable {
-  'ruff',
-  'basedpyright',
-  'lua_ls',
-  'rust_analyzer',
   'awk_ls',
+  'basedpyright',
   'bashls',
   'jsonls',
+  'lua_ls',
+  'pyrefly',
+  'ruff',
+  'rust_analyzer',
   'taplo',
-  'yamlls',
   'ty',
+  'yamlls',
 }
 
 return M
