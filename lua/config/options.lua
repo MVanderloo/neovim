@@ -52,6 +52,7 @@ opt.iskeyword:append '-'
 opt.virtualedit = 'block'
 opt.selection = 'exclusive'
 opt.mouse = 'a'
+opt.clipboard = 'unnamedplus'
 
 -- Completion
 opt.completeopt = 'menuone,noinsert,noselect'
