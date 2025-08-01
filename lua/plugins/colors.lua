@@ -28,11 +28,16 @@ vim.opt.wildignore:append {
 
 return {
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
+    'shaunsingh/nord.nvim',
     lazy = false,
-    config = function() vim.cmd 'colorscheme catppuccin-macchiato' end,
+    config = function() vim.cmd 'colorscheme nord' end,
   },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   lazy = false,
+  --   config = function() vim.cmd 'colorscheme catppuccin-macchiato' end,
+  -- },
   -- {
   --   'folke/tokyonight.nvim',
   --   lazy = false,
