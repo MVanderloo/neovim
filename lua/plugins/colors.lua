@@ -29,36 +29,16 @@ vim.opt.wildignore:append {
 }
 
 vim.pack.add { 'gh:shaunsingh/nord.nvim' }
-
 vim.cmd 'colorscheme nord'
 
--- return {
---   {
---     'shaunsingh/nord.nvim',
---     lazy = false,
---     config = function() vim.cmd 'colorscheme nord' end,
---   },
--- {
---   'catppuccin/nvim',
---   name = 'catppuccin',
---   lazy = false,
---   config = function() vim.cmd 'colorscheme catppuccin-macchiato' end,
--- },
--- {
---   'folke/tokyonight.nvim',
---   lazy = false,
---   config = function() vim.cmd 'colorscheme tokyonight' end,
---   -- config = true,
--- },
--- {
---   'navarasu/onedark.nvim',
---   lazy = false,
---   init = function() vim.cmd 'colorscheme onedark' end,
---   opts = { style = 'darker' },
--- },
--- {
---   'rose-pine/neovim',
---   name = 'rose-pine',
---   config = function() vim.cmd 'colorscheme rose-pine-moon' end,
--- },
--- }
+-- vim.pack.add { 'gh:catppuccin/nvim' }
+-- vim.cmd 'colorscheme catppuccin'
+
+-- vim.pack.add { 'gh:folke/tokyonight.nvim' }
+-- vim.cmd 'colorscheme tokyonight'
+
+-- vim.pack.add { 'gh:navarasu/onedark.nvim' }
+-- vim.cmd 'colorscheme onedark'
+
+-- vim.pack.add { 'gh:rose-pine/neovim' }
+-- vim.cmd 'colorscheme rose-pine'
