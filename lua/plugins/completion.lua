@@ -3,7 +3,7 @@ vim.pack.add {
   'gh:xzbdmw/colorful-menu.nvim',
   'gh:mikavilpas/blink-ripgrep.nvim',
   'gh:rafamadriz/friendly-snippets',
-  'gh:OXY2DEV/markview.nvim',
+  -- 'gh:OXY2DEV/markview.nvim',
   -- 'gh:kristijanhusak/vim-dadbod-completion',
 }
 
