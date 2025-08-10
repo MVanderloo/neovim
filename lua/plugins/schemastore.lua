@@ -1,2 +1,2 @@
 -- JSON/YAML schemas.
-return { 'b0o/SchemaStore.nvim', lazy = true }
+vim.pack.add { 'gh:b0o/SchemaStore.nvim' }

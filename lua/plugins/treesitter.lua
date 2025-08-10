@@ -1,6 +1,3 @@
-vim.pack.add { 'gh:OXY2DEV/markview.nvim' }
-require('markview').setup()
-
 vim.pack.add {
   'gh:nvim-treesitter/nvim-treesitter',
   'gh:nvim-treesitter/nvim-treesitter-textobjects',
@@ -26,28 +23,29 @@ require('nvim-treesitter').setup {
 --   },
 -- }
 
-vim.keymap.set(
-  { 'x', 'o' },
-  'af',
-  function() require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects') end
-)
-vim.keymap.set(
-  { 'x', 'o' },
-  'if',
-  function() require('nvim-treesitter-textobjects.select').select_textobject('@function.inner', 'textobjects') end
-)
-vim.keymap.set(
-  { 'x', 'o' },
-  'ac',
-  function() require('nvim-treesitter-textobjects.select').select_textobject('@class.outer', 'textobjects') end
-)
-vim.keymap.set(
-  { 'x', 'o' },
-  'ic',
-  function() require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects') end
-)
+-- vim.keymap.set(
+--   { 'x', 'o' },
+--   'af',
+--   function() require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects') end
+-- )
+-- vim.keymap.set(
+--   { 'x', 'o' },
+--   'if',
+--   function() require('nvim-treesitter-textobjects.select').select_textobject('@function.inner', 'textobjects') end
+-- )
+-- vim.keymap.set(
+--   { 'x', 'o' },
+--   'ac',
+--   function() require('nvim-treesitter-textobjects.select').select_textobject('@class.outer', 'textobjects') end
+-- )
+-- vim.keymap.set(
+--   { 'x', 'o' },
+--   'ic',
+--   function() require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects') end
+-- )
 
 require('ts-comments').setup()
+
 require('treesj').setup {
   use_default_keymaps = true,
   check_syntax_error = true, -- try setting this false
@@ -65,38 +63,3 @@ require('treesj').setup {
   ---@type nil|function Callback for treesj error handler. func (err_text, level, ...other_text)
   on_error = nil,
 }
-
-
--- {
---   'echasnovski/mini.ai',
---   version = '*',
---   event = 'VeryLazy',
---   config = true,
---   -- config = function()
---   --   local ts_spec = require('mini.ai').gen_spec.treesitter
---   --
---   --   return {
---   --     n_lines = 500,
---   --     custom_textobjects = {
---   --       -- argument
---   --       a = ts_spec { a = '@parameter.outer', i = '@parameter.inner' },
---   --       -- class
---   --       C = ts_spec { a = '@class.outer', i = '@class.inner' },
---   --       -- function call
---   --       f = ts_spec { a = '@call.outer', i = '@call.inner' },
---   --       -- definition
---   --       d = ts_spec {
---   --         a = { '@function.outer', '@class.outer' },
---   --         i = { '@function.inner', '@class.inner' },
---   --       },
---   --       -- scope
---   --       s = ts_spec {
---   --         a = { '@block.outer', '@conditional.outer', '@loop.outer' },
---   --         i = { '@block.inner', '@conditional.inner', '@loop.inner' },
---   --       },
---   --       -- loop
---   --       l = ts_spec { a = '@loop.outer', i = '@loop.inner' },
---   --     },
---   --   }
---   -- end,
--- },
