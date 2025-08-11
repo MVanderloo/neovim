@@ -10,7 +10,11 @@ require('undotree').setup {
 
 vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
 
-require('select-undo').setup()
+require('select-undo').setup {
+  persistent_undo = false,
+  mapping = false,
+  line_mapping = 'gu',
+}
 
 -- return {
 --   {

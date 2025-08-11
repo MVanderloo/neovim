@@ -5,7 +5,7 @@ vim.pack.add {
   'gh:echasnovski/mini.operators',
   'gh:echasnovski/mini.surround',
   'gh:echasnovski/mini.pairs',
-  'gh:echasnovski/mini.ai',
+  'gh:echasnovski/mini.ai'
 }
 
 require('guess-indent').setup()

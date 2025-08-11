@@ -1,6 +1,6 @@
 vim.pack.add { { src = 'gh:jake-stewart/multicursor.nvim', version = '1.0' } }
 
-local mc = require 'multicursor-nvim'
+local mc = require('multicursor-nvim')
 mc.setup()
 
 vim.keymap.set({ 'n', 'x' }, '<up>', function()

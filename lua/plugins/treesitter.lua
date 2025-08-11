@@ -1,7 +1,7 @@
 vim.pack.add {
   'gh:nvim-treesitter/nvim-treesitter',
   -- 'gh:nvim-treesitter/nvim-treesitter-textobjects',
-  'gh:folke/ts-comments.nvim',
+  -- 'gh:folke/ts-comments.nvim',
   'gh:wansmer/treesj',
   { src = 'gh:echasnovski/mini.ai' },
 }
@@ -45,7 +45,7 @@ require('nvim-treesitter').setup {
 --   function() require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects') end
 -- )
 
-require('ts-comments').setup()
+-- require('ts-comments').setup()
 
 require('treesj').setup {
   use_default_keymaps = true,

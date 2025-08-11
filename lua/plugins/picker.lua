@@ -2,10 +2,19 @@ vim.pack.add { 'gh:echasnovski/mini.pick' }
 
 require('mini.pick').setup()
 
-vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>Pick files<cr>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '<leader>g', '<cmd>Pick grep_live<cr>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '<leader>,', '<cmd>Pick buffers<cr>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '<leader>.', '<cmd>Pick resume<cr>', { noremap = true, silent = true })
+
+vim.keymap.set({'n', 'x'}, '<leader>f', '<cmd>Pick files<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>g', '<cmd>Pick grep_live<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>,', '<cmd>Pick buffers<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>.', '<cmd>Pick resume<cr>', {noremap = true, silent = true})
+
+-- vim.ui.select = require('mini.pick').ui_select
+
+vim.ui.select = function(items, opts, on_choice)
+  local start_opts = { window = { config = { width = vim.o.columns } } }
+  return require('mini.pick').ui_select(items, opts, on_choice, start_opts)
+end
+
 
 -- vim.pack.add {
 --   'gh:ibhagwan/fzf-lua',

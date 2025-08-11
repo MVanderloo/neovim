@@ -1,75 +1,80 @@
+local opt = vim.opt
+
 -- Tab / Indentation
-vim.opt.tabstop = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.wrap = true
-vim.opt.breakindent = true
-vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+opt.tabstop = 4
+opt.softtabstop = 0 -- copy tabstop
+opt.shiftwidth = 0 -- copy tabstop
+opt.expandtab = true
+opt.smartindent = true
+opt.wrap = true
+opt.breakindent = true
+opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- Search
-vim.opt.incsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.inccommand = 'split'
+opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.inccommand = 'split'
 
 -- Appearance
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.termguicolors = true
-vim.opt.signcolumn = 'yes:2'
-vim.opt.scrolloff = 10
-vim.opt.showmode = false
-vim.opt.cursorline = true
-vim.opt.cmdheight = 0
-vim.opt.list = true
-vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
-vim.opt.winborder = 'rounded' -- "single" "rounded" "bold"
+opt.number = true
+opt.relativenumber = true
+opt.termguicolors = true
+opt.signcolumn = 'yes'
+opt.scrolloff = 10
+opt.showmode = false
+opt.cursorline = true
+opt.cmdheight = 0
+opt.list = true
+opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+opt.winborder = 'rounded' -- "single" "rounded" "bold"
 
 -- make window background transparent
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 
 -- Files
-vim.opt.autowriteall = true
-vim.opt.autowrite = true
-vim.opt.updatetime = 500
-vim.opt.hidden = true
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath 'data' .. '/undo'
-vim.opt.undofile = true
-vim.opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,tabpages,winpos,winsize'
+opt.autowriteall = true
+opt.autowrite = true
+opt.updatetime = 500
+opt.hidden = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = vim.fn.stdpath 'data' .. '/undo'
+opt.undofile = true
+opt.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,options,tabpages,winpos,winsize'
 
 -- Behavior
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.errorbells = false
-vim.opt.iskeyword:append '-'
-vim.opt.virtualedit = 'block'
-vim.opt.selection = 'exclusive'
-vim.opt.mouse = 'a'
-vim.opt.clipboard = 'unnamedplus'
+opt.splitright = true
+opt.splitbelow = true
+opt.errorbells = false
+opt.iskeyword:append '-'
+opt.virtualedit = 'block'
+opt.selection = 'exclusive'
+opt.mouse = 'a'
+opt.clipboard = 'unnamedplus'
 
 -- Completion
-vim.opt.completeopt = 'menuone,noinsert,noselect'
+opt.completeopt = 'menuone,noinsert,noselect'
+-- opt.autochdir = true
 
 -- Key timeout
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 
 -- Folds
-vim.opt.foldmethod = 'manual'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldtext = '' -- enables syntax highlighting
-vim.opt.foldlevel = 99
+opt.foldmethod = 'indent'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldtext = '' -- enables syntax highlighting
+opt.foldlevel = 99
 
 -- Diff
--- vim.opt.diffopt = "internal,filler,closeoff"
-vim.opt.diffopt = 'filler,internal,closeoff,algorithm:histogram,context:5,linematch:60'
-vim.opt.fillchars:append { diff = '╱' }
+-- opt.diffopt = "internal,filler,closeoff"
+opt.diffopt = 'filler,internal,closeoff,algorithm:histogram,context:5,linematch:60'
+opt.fillchars:append { diff = '╱' }
 
 -- Spell
-vim.opt.spelloptions = 'camel'
+opt.spelloptions = 'camel'
 
--- execute .nvim.lua for project local config
-vim.opt.exrc = true
+-- execute .nvim.lua for project config
+opt.exrc = true

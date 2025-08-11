@@ -120,16 +120,44 @@ vim.g.inlay_hints = false
 --   return vim.lsp.handlers[methods.client_registerCapability](err, res, ctx)
 -- end
 
--- vim.api.nvim_create_autocmd('LspAttach', {
---   desc = 'Configure LSP keymaps',
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---
---     if not client then return end
---
---     on_attach(client, args.buf)
---   end,
--- })
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Configure LSP keymaps',
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+    if client:supports_method 'textDocument/definition' then
+      vim.keymap.set({ 'n' }, 'gd', function() vim.lsp.buf.definition() end)
+    end
+
+    if client:supports_method 'textDocument/references' then
+      vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end)
+    end
+
+    if client:supports_method 'textDocument/typeDefinition' then
+      vim.keymap.set({ 'n' }, 'gy', function() vim.lsp.buf.type_definition() end)
+    end
+
+    if client:supports_method 'textDocument/implementation' then
+      vim.keymap.set({ 'n' }, 'gli', function() vim.lsp.buf.implementation() end)
+    end
+
+    if client:supports_method 'textDocument/codeAction' then
+      vim.keymap.set({ 'n' }, 'gla', function() vim.lsp.buf.code_action() end)
+    end
+
+    if client:supports_method 'textDocument/rename' then
+      vim.keymap.set('n', 'glr', function() vim.lsp.buf.rename() end)
+    end
+
+    if client:supports_method 'textDocument/hover' then
+      vim.keymap.set({ 'n', 'x' }, 'K', function() vim.lsp.buf.hover() end)
+    end
+
+    -- if client:supports_method 'textDocument/signatureHelp' then
+    --   vim.keymap.set({ 'i' }, '<C-s>', function() vim.lsp.buf.signature_help() end, {})
+    -- end
+  end,
+})
 
 -- Set up LSP servers.
 -- vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
