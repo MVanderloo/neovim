@@ -30,31 +30,31 @@ vim.g.inlay_hints = false
 --     require('fzf-lua').lsp_live_workspace_symbols { no_header_i = true }
 --   end, 'Workspace symbols')
 
-  -- keymap('[d', function() vim.diagnostic.jump { count = -1 } end, 'Previous diagnostic')
-  -- keymap(']d', function() vim.diagnostic.jump { count = 1 } end, 'Next diagnostic')
-  -- keymap(
-  --   '[e',
-  --   function() vim.diagnostic.jump { count = -1, severity = vim.diagnostic.severity.ERROR } end,
-  --   'Previous error'
-  -- )
-  -- keymap(']e', function() vim.diagnostic.jump { count = 1, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
+-- keymap('[d', function() vim.diagnostic.jump { count = -1 } end, 'Previous diagnostic')
+-- keymap(']d', function() vim.diagnostic.jump { count = 1 } end, 'Next diagnostic')
+-- keymap(
+--   '[e',
+--   function() vim.diagnostic.jump { count = -1, severity = vim.diagnostic.severity.ERROR } end,
+--   'Previous error'
+-- )
+-- keymap(']e', function() vim.diagnostic.jump { count = 1, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
 
-  -- if client:supports_method(methods.textDocument_definition) then
-  --   keymap('gd', function() require('fzf-lua').lsp_definitions { jump1 = true } end, 'Go to definition')
-  --   keymap('gD', function() require('fzf-lua').lsp_definitions { jump1 = false } end, 'Peek definition')
-  -- end
+-- if client:supports_method(methods.textDocument_definition) then
+--   keymap('gd', function() require('fzf-lua').lsp_definitions { jump1 = true } end, 'Go to definition')
+--   keymap('gD', function() require('fzf-lua').lsp_definitions { jump1 = false } end, 'Peek definition')
+-- end
 
-  -- if client:supports_method(methods.textDocument_signatureHelp) then
-  --   local blink_window = require 'blink.cmp.completion.windows.menu'
-  --   local blink = require 'blink.cmp'
-  --
-  --   keymap('<C-k>', function()
-  --     -- Close the completion menu first (if open).
-  --     if blink_window.win:is_open() then blink.hide() end
-  --
-  --     vim.lsp.buf.signature_help()
-  --   end, 'Signature help', 'i')
-  -- end
+-- if client:supports_method(methods.textDocument_signatureHelp) then
+--   local blink_window = require 'blink.cmp.completion.windows.menu'
+--   local blink = require 'blink.cmp'
+--
+--   keymap('<C-k>', function()
+--     -- Close the completion menu first (if open).
+--     if blink_window.win:is_open() then blink.hide() end
+--
+--     vim.lsp.buf.signature_help()
+--   end, 'Signature help', 'i')
+-- end
 
 --   if client:supports_method(methods.textDocument_documentHighlight) then
 --     vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {

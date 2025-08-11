@@ -6,8 +6,8 @@ vim.pack.add {
   -- 'gh:a-usr/xml2lua.nvim', -- Optional | Experimental: add XML support
 }
 
-require('videre').setup({
+require('videre').setup {
   round_units = false,
-  keymap_desc_deliminator = "->",
-  link_backward = "H",
-})
+  keymap_desc_deliminator = '->',
+  link_backward = 'H',
+}
