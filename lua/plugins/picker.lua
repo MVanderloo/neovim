@@ -1,121 +1,130 @@
-vim.pack.add {
-  'gh:ibhagwan/fzf-lua',
-}
+vim.pack.add { 'gh:echasnovski/mini.pick' }
 
-local fzf = require 'fzf-lua'
-fzf.register_ui_select()
+require('mini.pick').setup()
 
-local keymap = vim.keymap.set
-keymap('n', '<leader>f.', '<cmd>FzfLua resume<cr>', { desc = 'Resume last command' })
-keymap(
-  'n',
-  '<leader>/',
-  function()
-    require('fzf-lua').lgrep_curbuf {
-      winopts = {
-        height = 0.6,
-        width = 0.5,
-        preview = { vertical = 'up:70%' },
-      },
-    }
-  end,
-  { desc = 'Grep current buffer' }
-)
-keymap('n', '<leader>fc', '<cmd>FzfLua highlights<cr>', { desc = 'Highlights' })
-keymap('n', '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', { desc = 'Document diagnostics' })
-keymap('n', '<leader>fD', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', { desc = 'Workspace diagnostics' })
-keymap('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
-keymap('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep' })
-keymap('x', '<leader>fg', '<cmd>FzfLua grep_visual<cr>', { desc = 'Grep' })
-keymap('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', { desc = 'Help' })
-keymap('n', '<leader>fr', function()
-  vim.cmd 'rshada!'
-  require('fzf-lua').oldfiles()
-end, { desc = 'Recently opened files' })
-keymap('n', 'z=', '<cmd>FzfLua spell_suggest<cr>', { desc = 'Spelling suggestions' })
+vim.keymap.set({'n', 'x'}, '<leader>f', '<cmd>Pick files<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>g', '<cmd>Pick grep_live<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>,', '<cmd>Pick buffers<cr>', {noremap = true, silent = true})
+vim.keymap.set({'n', 'x'}, '<leader>.', '<cmd>Pick resume<cr>', {noremap = true, silent = true})
 
-require('fzf-lua').setup {
-  fzf_colors = true,
-  fzf_opts = {
-    ['--info'] = 'default',
-    ['--layout'] = 'reverse-list',
-  },
-  keymap = {
-    builtin = {
-      ['<C-/>'] = 'toggle-help',
-      ['<C-a>'] = 'select-all',
-      ['<C-i>'] = 'toggle+down',
-      ['<C-S-i>'] = 'toggle+up',
-      ['<C-f>'] = 'preview-page-down',
-      ['<C-b>'] = 'preview-page-up',
-    },
-    fzf = {
-      ['ctrl-z'] = 'abort',
-      ['ctrl-u'] = 'unix-line-discard',
-      ['ctrl-f'] = 'half-page-down',
-      ['ctrl-b'] = 'half-page-up',
-      ['ctrl-a'] = 'toggle-all',
-      ['alt-g'] = 'first',
-      ['alt-G'] = 'last',
-      ['shift-down'] = 'preview-page-down',
-      ['shift-up'] = 'preview-page-up',
-    },
-  },
-  actions = {
-    files = {
-      ['ctrl-q'] = fzf.actions.file_edit_or_qf,
-      ['enter'] = fzf.actions.file_edit,
-      ['ctrl-s'] = fzf.actions.file_split,
-      ['ctrl-v'] = fzf.actions.file_vsplit,
-      ['ctrl-t'] = fzf.actions.file_tabedit,
-      ['alt-q'] = fzf.actions.file_sel_to_qf,
-      ['alt-Q'] = fzf.actions.file_sel_to_ll,
-      ['alt-i'] = fzf.actions.toggle_ignore,
-      ['alt-h'] = fzf.actions.toggle_hidden,
-      ['alt-f'] = fzf.actions.toggle_follow,
-    },
-  },
-  winopts = {
-    height = 0.8,
-    width = 0.7,
-    preview = {
-      scrollbar = false,
-      layout = 'vertical',
-      vertical = 'up:40%',
-    },
-  },
-  defaults = { git_icons = false },
-  previewers = {
-    codeaction = { toggle_behavior = 'extend' },
-  },
-  grep = {
-    rg_glob_fn = function(query, opts)
-      local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
-      return (regex or query), flags
-    end,
-  },
-  helptags = {
-    actions = {
-      ['enter'] = fzf.actions.help_vert,
-    },
-  },
-  lsp = {
-    code_actions = {
-      winopts = {
-        width = 70,
-        height = 20,
-        relative = 'cursor',
-        preview = {
-          hidden = true,
-          vertical = 'down:50%',
-        },
-      },
-    },
-  },
-  oldfiles = {
-    include_current_session = true,
-    winopts = {
-      preview = { hidden = true },
-    },
-  },
-}
+-- vim.pack.add {
+--   'gh:ibhagwan/fzf-lua',
+-- }
+--
+-- local fzf = require 'fzf-lua'
+-- fzf.register_ui_select()
+--
+-- local keymap = vim.keymap.set
+-- keymap('n', '<leader>f.', '<cmd>FzfLua resume<cr>', { desc = 'Resume last command' })
+-- keymap(
+--   'n',
+--   '<leader>/',
+--   function()
+--     require('fzf-lua').lgrep_curbuf {
+--       winopts = {
+--         height = 0.6,
+--         width = 0.5,
+--         preview = { vertical = 'up:70%' },
+--       },
+--     }
+--   end,
+--   { desc = 'Grep current buffer' }
+-- )
+-- keymap('n', '<leader>fc', '<cmd>FzfLua highlights<cr>', { desc = 'Highlights' })
+-- keymap('n', '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', { desc = 'Document diagnostics' })
+-- keymap('n', '<leader>fD', '<cmd>FzfLua lsp_workspace_diagnostics<cr>', { desc = 'Workspace diagnostics' })
+-- keymap('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
+-- keymap('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep' })
+-- keymap('x', '<leader>fg', '<cmd>FzfLua grep_visual<cr>', { desc = 'Grep' })
+-- keymap('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', { desc = 'Help' })
+-- keymap('n', '<leader>fr', function()
+--   vim.cmd 'rshada!'
+--   require('fzf-lua').oldfiles()
+-- end, { desc = 'Recently opened files' })
+-- keymap('n', 'z=', '<cmd>FzfLua spell_suggest<cr>', { desc = 'Spelling suggestions' })
+--
+-- require('fzf-lua').setup {
+--   fzf_colors = true,
+--   fzf_opts = {
+--     ['--info'] = 'default',
+--     ['--layout'] = 'reverse-list',
+--   },
+--   keymap = {
+--     builtin = {
+--       ['<C-/>'] = 'toggle-help',
+--       ['<C-a>'] = 'select-all',
+--       ['<C-i>'] = 'toggle+down',
+--       ['<C-S-i>'] = 'toggle+up',
+--       ['<C-f>'] = 'preview-page-down',
+--       ['<C-b>'] = 'preview-page-up',
+--     },
+--     fzf = {
+--       ['ctrl-z'] = 'abort',
+--       ['ctrl-u'] = 'unix-line-discard',
+--       ['ctrl-f'] = 'half-page-down',
+--       ['ctrl-b'] = 'half-page-up',
+--       ['ctrl-a'] = 'toggle-all',
+--       ['alt-g'] = 'first',
+--       ['alt-G'] = 'last',
+--       ['shift-down'] = 'preview-page-down',
+--       ['shift-up'] = 'preview-page-up',
+--     },
+--   },
+--   actions = {
+--     files = {
+--       ['ctrl-q'] = fzf.actions.file_edit_or_qf,
+--       ['enter'] = fzf.actions.file_edit,
+--       ['ctrl-s'] = fzf.actions.file_split,
+--       ['ctrl-v'] = fzf.actions.file_vsplit,
+--       ['ctrl-t'] = fzf.actions.file_tabedit,
+--       ['alt-q'] = fzf.actions.file_sel_to_qf,
+--       ['alt-Q'] = fzf.actions.file_sel_to_ll,
+--       ['alt-i'] = fzf.actions.toggle_ignore,
+--       ['alt-h'] = fzf.actions.toggle_hidden,
+--       ['alt-f'] = fzf.actions.toggle_follow,
+--     },
+--   },
+--   winopts = {
+--     height = 0.8,
+--     width = 0.7,
+--     preview = {
+--       scrollbar = false,
+--       layout = 'vertical',
+--       vertical = 'up:40%',
+--     },
+--   },
+--   defaults = { git_icons = false },
+--   previewers = {
+--     codeaction = { toggle_behavior = 'extend' },
+--   },
+--   grep = {
+--     rg_glob_fn = function(query, opts)
+--       local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
+--       return (regex or query), flags
+--     end,
+--   },
+--   helptags = {
+--     actions = {
+--       ['enter'] = fzf.actions.help_vert,
+--     },
+--   },
+--   lsp = {
+--     code_actions = {
+--       winopts = {
+--         width = 70,
+--         height = 20,
+--         relative = 'cursor',
+--         preview = {
+--           hidden = true,
+--           vertical = 'down:50%',
+--         },
+--       },
+--     },
+--   },
+--   oldfiles = {
+--     include_current_session = true,
+--     winopts = {
+--       preview = { hidden = true },
+--     },
+--   },
+-- }

@@ -10,7 +10,6 @@ require 'config.auto-commands'
 require 'config.filetype'
 require 'config.lsp'
 
--- require 'plugins.treesitter'
 require 'plugins.git'
 require 'plugins.bindings'
 require 'plugins.colors'

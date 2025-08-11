@@ -1,8 +1,9 @@
 vim.pack.add {
   'gh:nvim-treesitter/nvim-treesitter',
-  'gh:nvim-treesitter/nvim-treesitter-textobjects',
+  -- 'gh:nvim-treesitter/nvim-treesitter-textobjects',
   'gh:folke/ts-comments.nvim',
   'gh:wansmer/treesj',
+  { src = 'gh:echasnovski/mini.ai' },
 }
 
 require('nvim-treesitter').setup {
@@ -63,3 +64,37 @@ require('treesj').setup {
   ---@type nil|function Callback for treesj error handler. func (err_text, level, ...other_text)
   on_error = nil,
 }
+
+-- {
+--   'echasnovski/mini.ai',
+--   version = '*',
+--   event = 'VeryLazy',
+--   config = true,
+--   -- config = function()
+--   --   local ts_spec = require('mini.ai').gen_spec.treesitter
+--   --
+--   --   return {
+--   --     n_lines = 500,
+--   --     custom_textobjects = {
+--   --       -- argument
+--   --       a = ts_spec { a = '@parameter.outer', i = '@parameter.inner' },
+--   --       -- class
+--   --       C = ts_spec { a = '@class.outer', i = '@class.inner' },
+--   --       -- function call
+--   --       f = ts_spec { a = '@call.outer', i = '@call.inner' },
+--   --       -- definition
+--   --       d = ts_spec {
+--   --         a = { '@function.outer', '@class.outer' },
+--   --         i = { '@function.inner', '@class.inner' },
+--   --       },
+--   --       -- scope
+--   --       s = ts_spec {
+--   --         a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+--   --         i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+--   --       },
+--   --       -- loop
+--   --       l = ts_spec { a = '@loop.outer', i = '@loop.inner' },
+--   --     },
+--   --   }
+--   -- end,
+-- },

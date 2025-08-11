@@ -1,6 +1,6 @@
 vim.pack.add { 'gh:hat0uma/csvview.nvim' }
 
-require('csvview.nvim').setup {
+require('csvview').setup {
   view = {
     min_column_width = 1,
     spacing = 1,
