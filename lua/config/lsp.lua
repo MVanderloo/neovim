@@ -153,6 +153,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set({ 'n', 'x' }, 'K', function() vim.lsp.buf.hover() end)
     end
 
+    if client:supports_method('textDocument/documentColor') then
+      vim.lsp.document_color.enable(true, args.buf)
+    end
+
     -- if client:supports_method 'textDocument/signatureHelp' then
     --   vim.keymap.set({ 'i' }, '<C-s>', function() vim.lsp.buf.signature_help() end, {})
     -- end
