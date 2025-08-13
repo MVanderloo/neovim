@@ -7,7 +7,7 @@ require('conform').setup {
   default_format_opts = { lsp_format = 'fallback' },
   formatters_by_ft = {
     bash = { 'shfmt' },
-    c = { name = 'clangd', timeout_ms = 500},
+    c = { name = 'clangd', timeout_ms = 500 },
     fish = { 'fish_indent' },
     javascript = { 'prettier', name = 'dprint', timeout_ms = 500 },
     javascriptreact = { 'prettier', name = 'dprint', timeout_ms = 500 },
