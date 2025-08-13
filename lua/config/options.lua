@@ -63,7 +63,7 @@ vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
 
 -- Folds
-opt.foldmethod = 'indent'
+opt.foldmethod = 'expr'
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 opt.foldtext = '' -- enables syntax highlighting
 opt.foldlevel = 99
