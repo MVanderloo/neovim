@@ -100,17 +100,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --   end,
 -- })
 
+-- trying out project local configs
 vim.lsp.enable {
   'awk_ls',
-  'basedpyright',
   'bashls',
   'jsonls',
-  'lua_ls',
-  'pyrefly',
-  'ruff',
-  'rust_analyzer',
   'taplo',
-  'ty',
   'yamlls',
 }
 
