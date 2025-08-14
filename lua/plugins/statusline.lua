@@ -1,11 +1,8 @@
 vim.pack.add { 'gh:smiteshp/nvim-navic', 'gh:nvim-lualine/lualine.nvim' }
 
-local navic = require 'nvim-navic'
-
-navic.setup {
+require('nvim-navic').setup {
   lsp = { auto_attach = true },
-  -- separator = '｜',
-  separator = ' 〉',
+  separator = ' 〉', -- '｜'
   -- highlight = true,
   click = true,
   icons = {
@@ -39,7 +36,7 @@ navic.setup {
 }
 
 -- this is not working... not sure why
--- vim.api.nvim_set_hl(0, 'NavicSeparator', { bold = true, fg = '#FF0000', bg = '#001100' })
+vim.api.nvim_set_hl(0, 'NavicSeparator', { bold = true, fg = '#ffffff' })
 
 local function macro_recording()
   local reg = vim.fn.reg_recording()
@@ -91,8 +88,8 @@ require('lualine').setup {
     lualine_b = {},
     lualine_c = {
       {
-        function() return navic.get_location() end,
-        cond = function() return navic.is_available() end,
+        function() return require('nvim-navic').get_location() end,
+        cond = function() return require('nvim-navic').is_available() end,
       },
     },
     lualine_x = { 'filename' },
