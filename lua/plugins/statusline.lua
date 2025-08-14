@@ -1,4 +1,45 @@
-vim.pack.add { 'gh:nvim-lualine/lualine.nvim' }
+vim.pack.add { 'gh:smiteshp/nvim-navic', 'gh:nvim-lualine/lualine.nvim' }
+
+local navic = require 'nvim-navic'
+
+navic.setup {
+  lsp = { auto_attach = true },
+  -- separator = '｜',
+  separator = ' 〉',
+  -- highlight = true,
+  click = true,
+  icons = {
+    File = ' ',
+    Module = ' ',
+    Namespace = ' ',
+    Package = ' ',
+    Class = ' ',
+    Method = ' ',
+    Property = ' ',
+    Field = ' ',
+    Constructor = ' ',
+    Enum = ' ',
+    Interface = ' ',
+    Function = ' ',
+    Variable = ' ',
+    Constant = ' ',
+    String = ' ',
+    Number = ' ',
+    Boolean = ' ',
+    Array = ' ',
+    Object = ' ',
+    Key = ' ',
+    Null = ' ',
+    EnumMember = ' ',
+    Struct = ' ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ' ',
+  },
+}
+
+-- this is not working... not sure why
+-- vim.api.nvim_set_hl(0, 'NavicSeparator', { bold = true, fg = '#FF0000', bg = '#001100' })
 
 local function macro_recording()
   local reg = vim.fn.reg_recording()
@@ -45,18 +86,23 @@ require('lualine').setup {
   --   lualine_y = {},
   --   lualine_z = {},
   -- },
-  -- winbar = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = { 'filename' },
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
-  -- inactive_winbar = {},
-  -- extensions = {},
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      {
+        function() return navic.get_location() end,
+        cond = function() return navic.is_available() end,
+      },
+    },
+    lualine_x = { 'filename' },
+    lualine_y = {},
+    lualine_z = {},
+  },
+  inactive_winbar = {},
+  extensions = {},
 }
---
+
 -- {
 --   'jake-stewart/auto-cmdheight.nvim',
 --   lazy = false,
