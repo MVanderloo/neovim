@@ -1,5 +1,5 @@
 vim.cmd 'normal! M'
-vim.opt_local.scrolloff = 999
+vim.bo.scrolloff = 999
 
 -- vim.keymap.set('n', '<localleader>E', '<cmd>Helpview Enable<cr>')
 -- vim.keymap.set('n', '<localleader>D', '<cmd>Helpview Disable<cr>')

@@ -1,1 +1,1 @@
--- vim.opt_local.conceallevel = 2
+-- vim.bo.conceallevel = 2

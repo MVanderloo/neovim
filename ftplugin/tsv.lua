@@ -1,5 +1,5 @@
-vim.opt_local.wrap = false
-vim.opt_local.number = true
-vim.opt_local.relativenumber = false
+vim.bo.wrap = false
+vim.bo.number = true
+vim.bo.relativenumber = false
 
 -- require('csvview').enable()

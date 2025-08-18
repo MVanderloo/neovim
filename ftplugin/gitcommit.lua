@@ -1,6 +1,6 @@
-vim.opt_local.wrap = true
-vim.opt_local.spell = true
-vim.opt_local.linebreak = true
-vim.opt_local.textwidth = 72
+vim.bo.wrap = true
+vim.bo.spell = true
+vim.bo.linebreak = true
+vim.bo.textwidth = 72
 
 vim.cmd [[startinsert]]

@@ -1,2 +1,2 @@
 vim.cmd 'normal! M'
-vim.opt_local.scrolloff = 999
+vim.bo.scrolloff = 999
