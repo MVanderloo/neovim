@@ -11,6 +11,7 @@ require 'config.filetype'
 require 'config.lsp'
 
 require 'plugins.colors'
+require 'plugins.hardtime'
 require 'plugins.schemastore'
 require 'plugins.git'
 require 'plugins.bindings'
