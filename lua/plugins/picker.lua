@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:echasnovski/mini.pick' }
+vim.pack.add({ 'gh:echasnovski/mini.pick' }, { confirm = false })
 
 require('mini.pick').setup()
 
@@ -14,9 +14,9 @@ vim.ui.select = function(items, opts, on_choice)
   return require('mini.pick').ui_select(items, opts, on_choice, start_opts)
 end
 
--- vim.pack.add {
+-- vim.pack.add({
 --   'gh:ibhagwan/fzf-lua',
--- }
+-- }, { confirm = false })
 --
 -- local fzf = require 'fzf-lua'
 -- fzf.register_ui_select()

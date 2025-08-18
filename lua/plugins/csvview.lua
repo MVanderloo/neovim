@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:hat0uma/csvview.nvim' }
+vim.pack.add({ 'gh:hat0uma/csvview.nvim' }, { confirm = false })
 
 require('csvview').setup {
   view = {

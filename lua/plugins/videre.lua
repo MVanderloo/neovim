@@ -1,10 +1,10 @@
-vim.pack.add {
+vim.pack.add({
   'gh:owen-dechow/videre.nvim',
   'gh:Owen-Dechow/nvim_json_graph_view',
   'gh:Owen-Dechow/graph_view_yaml_parser', -- Optional: add YAML support
   'gh:Owen-Dechow/graph_view_toml_parser', -- Optional: add TOML support
   -- 'gh:a-usr/xml2lua.nvim', -- Optional | Experimental: add XML support
-}
+}, { confirm = false })
 
 require('videre').setup {
   round_units = false,

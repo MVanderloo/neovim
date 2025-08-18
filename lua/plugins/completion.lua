@@ -1,11 +1,11 @@
-vim.pack.add {
+vim.pack.add({
   { src = 'gh:saghen/blink.cmp', version = 'v1.6.0' },
   'gh:xzbdmw/colorful-menu.nvim',
   'gh:mikavilpas/blink-ripgrep.nvim',
   'gh:rafamadriz/friendly-snippets',
   -- 'gh:OXY2DEV/markview.nvim',
   -- 'gh:kristijanhusak/vim-dadbod-completion',
-}
+}, { confirm = false })
 
 vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() })
 

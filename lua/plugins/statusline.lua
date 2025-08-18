@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:smiteshp/nvim-navic', 'gh:nvim-lualine/lualine.nvim' }
+vim.pack.add({ 'gh:smiteshp/nvim-navic', 'gh:nvim-lualine/lualine.nvim' }, { confirm = false })
 
 require('nvim-navic').setup {
   lsp = { auto_attach = true },

@@ -1,4 +1,4 @@
-vim.pack.add { { src = 'gh:jake-stewart/multicursor.nvim', version = '1.0' } }
+vim.pack.add({ { src = 'gh:jake-stewart/multicursor.nvim', version = '1.0' } }, { confirm = false })
 
 local mc = require 'multicursor-nvim'
 mc.setup()

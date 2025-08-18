@@ -5,7 +5,7 @@ vim.diagnostic.config {
   signs = false,
 }
 
-vim.pack.add { 'gh:rachartier/tiny-inline-diagnostic.nvim' }
+vim.pack.add({ 'gh:rachartier/tiny-inline-diagnostic.nvim' }, { confirm = false })
 
 require('tiny-inline-diagnostic').setup {
   preset = 'powerline',

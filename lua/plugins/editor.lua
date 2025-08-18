@@ -1,4 +1,4 @@
-vim.pack.add {
+vim.pack.add({
   'gh:nmac427/guess-indent.nvim',
   'gh:lukas-reineke/indent-blankline.nvim',
   'gh:echasnovski/mini.align',
@@ -6,7 +6,7 @@ vim.pack.add {
   'gh:echasnovski/mini.surround',
   'gh:echasnovski/mini.pairs',
   'gh:echasnovski/mini.ai',
-}
+}, { confirm = false })
 
 require('guess-indent').setup()
 require('ibl').setup()

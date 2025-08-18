@@ -1,8 +1,8 @@
-vim.pack.add {
+vim.pack.add({
   'gh:nvim-lua/plenary.nvim',
   'gh:jiaoshijie/undotree',
   'gh:sunnytamang/select-undo.nvim',
-}
+}, { confirm = false })
 
 require('undotree').setup {
   window = { winblend = 0 },

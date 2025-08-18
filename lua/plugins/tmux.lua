@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:christoomey/vim-tmux-navigator' }
+vim.pack.add({ 'gh:christoomey/vim-tmux-navigator' }, { confirm = false })
 
 vim.keymap.set({ 'n', 'x', 'i' }, '<C-h>', '<cmd>TmuxNavigateLeft<cr>', { remap = false })
 vim.keymap.set({ 'n', 'x', 'i' }, '<C-j>', '<cmd>TmuxNavigateDown<cr>', { remap = false })

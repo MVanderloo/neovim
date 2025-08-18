@@ -28,17 +28,17 @@ vim.opt.wildignore:append {
   'zellner.vim',
 }
 
-vim.pack.add { 'gh:shaunsingh/nord.nvim' }
+vim.pack.add({ 'gh:shaunsingh/nord.nvim' }, { confirm = false })
 vim.cmd 'colorscheme nord'
 
--- vim.pack.add { 'gh:catppuccin/nvim' }
+-- vim.pack.add({ 'gh:catppuccin/nvim' }, { confirm = false })
 -- vim.cmd 'colorscheme catppuccin'
 
--- vim.pack.add { 'gh:folke/tokyonight.nvim' }
+-- vim.pack.add({ 'gh:folke/tokyonight.nvim' }, { confirm = false })
 -- vim.cmd 'colorscheme tokyonight'
 
--- vim.pack.add { 'gh:navarasu/onedark.nvim' }
+-- vim.pack.add({ 'gh:navarasu/onedark.nvim' }, { confirm = false })
 -- vim.cmd 'colorscheme onedark'
 
--- vim.pack.add { 'gh:rose-pine/neovim' }
+-- vim.pack.add({ 'gh:rose-pine/neovim' }, { confirm = false })
 -- vim.cmd 'colorscheme rose-pine'

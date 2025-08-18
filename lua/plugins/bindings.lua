@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:echasnovski/mini.bracketed' }
+vim.pack.add({ 'gh:echasnovski/mini.bracketed' }, { confirm = false })
 
 require('mini.bracketed').setup {
   buffer = { suffix = 'b', options = {} },

@@ -1,4 +1,4 @@
-vim.pack.add { 'gh:stevearc/conform.nvim' }
+vim.pack.add({ 'gh:stevearc/conform.nvim' }, { confirm = false })
 
 vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 

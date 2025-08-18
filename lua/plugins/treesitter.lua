@@ -1,10 +1,10 @@
-vim.pack.add {
+vim.pack.add({
   'gh:nvim-treesitter/nvim-treesitter',
   -- 'gh:nvim-treesitter/nvim-treesitter-textobjects',
   -- 'gh:folke/ts-comments.nvim',
   'gh:wansmer/treesj',
   { src = 'gh:echasnovski/mini.ai' },
-}
+}, { confirm = false })
 
 require('nvim-treesitter').setup {
   ensure_installed = 'all',
