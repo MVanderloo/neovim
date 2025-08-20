@@ -4,18 +4,18 @@ local mc = require 'multicursor-nvim'
 mc.setup()
 
 vim.keymap.set({ 'n', 'x' }, '<up>', function()
-  if vim.opt.hlsearch then
+  if vim.o.hlsearch then
     mc.matchAddCursor(-1)
-    vim.opt.hlsearch = true
+    vim.o.hlsearch = true
   else
     mc.lineAddCursor(-1)
   end
 end)
 
 vim.keymap.set({ 'n', 'x' }, '<down>', function()
-  if vim.opt.hlsearch then
+  if vim.o.hlsearch then
     mc.matchAddCursor(1)
-    vim.opt.hlsearch = true
+    vim.o.hlsearch = true
   else
     mc.lineAddCursor(1)
   end
