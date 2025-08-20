@@ -3,7 +3,7 @@ vim.pack.add({ 'gh:smiteshp/nvim-navic', 'gh:nvim-lualine/lualine.nvim' }, { con
 require('nvim-navic').setup {
   lsp = { auto_attach = true },
   separator = ' 〉', -- '｜'
-  -- highlight = true,
+  highlight = true,
   click = true,
   icons = {
     File = ' ',
@@ -34,9 +34,6 @@ require('nvim-navic').setup {
     TypeParameter = ' ',
   },
 }
-
--- this is not working... not sure why
-vim.api.nvim_set_hl(0, 'NavicSeparator', { bold = true, fg = '#ffffff' })
 
 local function macro_recording()
   local reg = vim.fn.reg_recording()
